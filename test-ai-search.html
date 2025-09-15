@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI搜索测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        button { padding: 10px 15px; background: #6366f1; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #4f46e5; }
+        #result { margin-top: 20px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI搜索测试 - KLF公司介绍</h1>
+        <button id="testBtn">测试KLF公司介绍搜索</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        document.getElementById('testBtn').addEventListener('click', async () => {
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = '正在搜索...';
+            try {
+                const response = await fetch('/api/ai-search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ query: 'KLF公司介绍' })
+                });
+                const data = await response.json();
+                resultElement.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultElement.textContent = '测试失败: ' + error.message;
+            }
+        });
+    </script>
+</body>
+</html>

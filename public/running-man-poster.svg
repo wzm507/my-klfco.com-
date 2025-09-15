@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <!-- 背景渐变 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5b700" />
+      <stop offset="100%" stop-color="#e67e22" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="1200" height="600" fill="url(#bgGradient)" />
+  
+  <!-- 标题文字 -->
+  <text x="600" y="80" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle" fill="white">KEEP RUNNING</text>
+  <text x="600" y="130" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="white">开启美好奇幻旅程 4月21日起 每周五20:20 欢乐开跑</text>
+  
+  <!-- 人物剪影 -->
+  <g transform="translate(300, 250) scale(0.8)">
+    <!-- 左侧坐着的人 -->
+    <rect x="-100" y="-50" width="60" height="100" rx="10" fill="#34495e" />
+    <rect x="-80" y="50" width="20" height="50" fill="#2c3e50" />
+    <rect x="-40" y="50" width="20" height="50" fill="#2c3e50" />
+  </g>
+  
+  <g transform="translate(450, 200) scale(0.8)">
+    <!-- 穿白色衣服的人 -->
+    <rect x="-30" y="-100" width="60" height="150" rx="10" fill="white" />
+    <circle cx="0" cy="-120" r="25" fill="#e74c3c" />
+  </g>
+  
+  <g transform="translate(600, 200) scale(0.8)">
+    <!-- 穿绿色衣服的人 -->
+    <rect x="-30" y="-100" width="60" height="150" rx="10" fill="#27ae60" />
+    <circle cx="0" cy="-120" r="25" fill="#e74c3c" />
+  </g>
+  
+  <g transform="translate(750, 200) scale(0.8)">
+    <!-- 穿红色衣服的人 -->
+    <rect x="-30" y="-100" width="60" height="150" rx="10" fill="#e74c3c" />
+    <circle cx="0" cy="-120" r="25" fill="#e74c3c" />
+  </g>
+  
+  <g transform="translate(900, 200) scale(0.8)">
+    <!-- 穿黑色衣服的人 -->
+    <rect x="-30" y="-120" width="60" height="170" rx="10" fill="#2c3e50" />
+    <circle cx="0" cy="-140" r="25" fill="#e74c3c" />
+  </g>
+  
+  <g transform="translate(400, 350) scale(0.8)">
+    <!-- 穿蓝色衣服的人 -->
+    <rect x="-30" y="-80" width="60" height="130" rx="10" fill="#3498db" />
+    <circle cx="0" cy="-100" r="25" fill="#e74c3c" />
+  </g>
+  
+  <g transform="translate(850, 300) scale(0.8)">
+    <!-- 穿紫色裙子的人 -->
+    <path d="M-30,-100 L30,-100 L40,50 L-40,50 Z" fill="#9b59b6" />
+    <circle cx="0" cy="-120" r="25" fill="#e74c3c" />
+  </g>
+  
+  <g transform="translate(700, 350) scale(0.8)">
+    <!-- 穿黑色衣服坐着的人 -->
+    <rect x="-30" y="-50" width="60" height="100" rx="10" fill="#2c3e50" />
+    <circle cx="0" cy="-70" r="25" fill="#e74c3c" />
+  </g>
+  
+  <!-- 底部文字和标志 -->
+  <text x="600" y="550" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="white">浙江卫视 美好中国</text>
+  <rect x="1000" y="520" width="150" height="60" rx="5" fill="#f5b700" />
+  <text x="1075" y="555" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">奔跑吧</text>
+</svg>
