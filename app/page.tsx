@@ -352,9 +352,12 @@ export default function ModernWebsite() {
 
             {/* Mobile Menu Button */}
             <div className="md:hidden">
-              <Button variant="ghost" size="sm" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              <button 
+                className="inline-flex items-center justify-center h-8 px-3 rounded-md text-sm font-medium hover:bg-gray-800 text-white"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </Button>
+              </button>
             </div>
           </div>
 
@@ -786,7 +789,7 @@ export default function ModernWebsite() {
             <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               中东地产科技与营销全栈服务
             </h2>
-            <p className="text-[clamp(1rem,1.5vw,1.25rem)] text-gray-400 max-w-4xl mx-auto text-center leading-relaxed">
+            <p className="text-[clamp(0.9rem,1.2vw,1.25rem)] text-gray-400 max-w-5xl mx-auto text-center leading-relaxed">
               覆盖经纪人IP孵化、房产网站系统、代币化等领域，全链路赋能迪拜房产客户增长与创新
             </p>
           </div>
