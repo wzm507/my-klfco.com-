@@ -636,7 +636,7 @@ export default function ModernWebsite() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-[70vh] md:min-h-screen flex items-center justify-center overflow-hidden">
+      <section id="home" className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center overflow-hidden">
         {/* Hero Background Video - 优化手机适配 */}
         <video
           className="absolute inset-0 w-full h-full object-cover object-center"
@@ -656,13 +656,13 @@ export default function ModernWebsite() {
           <div className="text-center mb-16 transform -translate-y-[30px] md:-translate-y-[40px] lg:-translate-y-[60px]">
             <div className="mb-4 md:mb-8 lg:mb-16"></div>
 
-            <h1 className="text-[clamp(2rem,5vw,3rem)] md:text-6xl lg:text-7xl font-extrabold mb-6 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex items-center justify-center gap-2 tracking-wide">
+            <h1 className="text-[clamp(1.5rem,5vw,2.5rem)] md:text-6xl lg:text-7xl font-extrabold mb-6 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex items-center justify-center gap-2 tracking-wide">
               <span className="text-white transition-all duration-300 hover:text-purple-200">
                 中东地产数字营销与科技服务专家
               </span>
             </h1>
 
-            <p className="text-[clamp(1rem,2.5vw,1.5rem)] text-white font-semibold mb-6 md:mb-8 lg:mb-12 max-w-5xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide">
+            <p className="text-[clamp(0.9rem,2vw,1.3rem)] text-white font-semibold mb-6 md:mb-8 lg:mb-12 max-w-5xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide">
               为中东房产开发商、经纪人提供 营销<span className="mx-1">·</span>代币化<span className="mx-1">·</span>AI 智能体等全栈解决方案
             </p>
 
@@ -784,27 +784,27 @@ export default function ModernWebsite() {
       {/* Features Section */}
       <section id="features" className="py-24 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20 mt-[-30px]">
-            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">核心功能</Badge>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              中东地产科技与营销全栈服务
-            </h2>
-            <p className="text-[clamp(0.9rem,1.2vw,1.25rem)] text-gray-400 max-w-5xl mx-auto text-center leading-relaxed">
-              覆盖经纪人IP孵化、房产网站系统、代币化等领域，全链路赋能迪拜房产客户增长与创新
-            </p>
-          </div>
+          <div className="text-center mb-16 mt-[-20px]">
+              <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-4">核心功能</Badge>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                中东地产科技与营销全栈服务
+              </h2>
+              <p className="text-[clamp(0.85rem,1vw,1.1rem)] text-gray-400 max-w-2xl mx-auto text-center leading-relaxed">
+                覆盖经纪人IP孵化、房产网站系统、代币化等领域，全链路赋能迪拜房产客户增长与创新
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, index) => (
               <Card
                 key={index}
                 className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25"
               >
                 <CardContent className="p-8">
-                  <div className="mb-6">
-                    <feature.icon className="w-12 h-12 text-white stroke-1" strokeWidth={1} />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-purple-300 transition-colors">
+                  <div className="mb-4">
+                <feature.icon className="w-10 h-10 text-white stroke-1" strokeWidth={1} />
+              </div>
+                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-purple-300 transition-colors">
                     {feature.title}
                   </h3>
                   <p className="text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed">
@@ -821,13 +821,13 @@ export default function ModernWebsite() {
       <section id="solutions" className="py-24 relative">
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-20">
-            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">解决方案</Badge>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              中东房产从业者专属解决方案
-            </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">为中东开发商、经纪人、机构定制从IP到科技系统的全场景增长方案</p>
-          </div>
+          <div className="text-center mb-16">
+              <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-4">解决方案</Badge>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                中东房产从业者专属解决方案
+              </h2>
+              <p className="text-[clamp(0.85rem,1vw,1.1rem)] text-gray-400 max-w-2xl mx-auto">为中东开发商、经纪人、机构定制从IP到科技系统的全场景增长方案</p>
+            </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
@@ -875,8 +875,8 @@ export default function ModernWebsite() {
                 className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:scale-105"
               >
                 <CardContent className="p-6 flex-grow flex flex-col">
-                  <solution.icon className="w-12 h-12 text-white mb-4 stroke-1" strokeWidth={1} />
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+                  <solution.icon className="w-10 h-10 text-white mb-3 stroke-1" strokeWidth={1} />
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">
                     {solution.title}
                   </h3>
                   <p className="text-gray-400 mb-4 leading-relaxed">{solution.description}</p>
@@ -1081,7 +1081,7 @@ export default function ModernWebsite() {
                 key={index}
                 className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:scale-105 overflow-hidden"
               >
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-40 overflow-hidden">
                   <img
                     src={caseStudy.image || "/placeholder.svg"}
                     alt={caseStudy.company}
@@ -1268,13 +1268,13 @@ export default function ModernWebsite() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-20 mt-[-30px]">
-            <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30 mb-6">业务动态</Badge>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              我们的业务动态
-            </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">了解我们在IP运营、网站设计和公众号运营领域的最新进展</p>
-          </div>
+          <div className="text-center mb-16 mt-[-20px]">
+              <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30 mb-4">业务动态</Badge>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                我们的业务动态
+              </h2>
+              <p className="text-[clamp(0.85rem,1vw,1.1rem)] text-gray-400 max-w-2xl mx-auto">了解我们在IP运营、网站设计和公众号运营领域的最新进展</p>
+            </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamNews.map((news, index) => (
@@ -1320,24 +1320,24 @@ export default function ModernWebsite() {
       {/* Contact Section */}
       <section id="contact" className="py-24 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">联系我们</Badge>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              开启您的中东房产数字化增长
-            </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              立即咨询，定制IP孵化、网站搭建等专属方案
-            </p>
-          </div>
+          <div className="text-center mb-16">
+              <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-4">联系我们</Badge>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                开启您的中东房产数字化增长
+              </h2>
+              <p className="text-[clamp(0.85rem,1vw,1.1rem)] text-gray-400 max-w-2xl mx-auto">
+                立即咨询，定制IP孵化、网站搭建等专属方案
+              </p>
+            </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <Card className="bg-gray-900/50 border-gray-800">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold text-white">发送消息</CardTitle>
+                <CardTitle className="text-xl font-bold text-white">发送消息</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">姓名</label>
                     <Input
@@ -1428,22 +1428,22 @@ export default function ModernWebsite() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-gray-800 py-16">
+      <footer className="border-t border-gray-800 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex flex-col md:flex-row items-center gap-2 mb-4">
                 <img 
                   src="/llllogo.png" 
                   alt="KLF Logo" 
-                  className="h-[45px] object-contain" 
-                  style={{ height: 'calc(3rem * 0.94)' }}
+                  className="h-[36px] object-contain" 
+                  style={{ height: 'calc(2.4rem * 0.94)' }}
                 />
-                <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
                   KLF STUDIO
                 </div>
               </div>
-              <p className="text-gray-400 mb-6 max-w-md">
+              <p className="text-[clamp(0.8rem,1vw,1rem)] text-gray-400 mb-4 max-w-md">
                 专注中东地产领域的数字营销与科技服务，为中东房产客户提供从IP孵化到区块链应用的全栈解决方案
               </p>
               <div className="flex space-x-4">
@@ -1474,8 +1474,8 @@ export default function ModernWebsite() {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-6 text-white">核心业务</h3>
-              <ul className="space-y-3">
+              <h3 className="text-base font-semibold mb-4 text-white">核心业务</h3>
+              <ul className="space-y-2">
                 <li>
                   <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
                     经纪人IP孵化
@@ -1500,8 +1500,8 @@ export default function ModernWebsite() {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-6 text-white">客户支持</h3>
-              <ul className="space-y-3">
+              <h3 className="text-base font-semibold mb-4 text-white">客户支持</h3>
+              <ul className="space-y-2">
                 <li>
                   <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
                     帮助中心
