@@ -634,9 +634,9 @@ export default function ModernWebsite() {
 
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Hero Background Video */}
+        {/* Hero Background Video - 优化手机适配 */}
         <video
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover object-center"
           autoPlay
           muted
           playsInline
@@ -645,10 +645,12 @@ export default function ModernWebsite() {
         >
           <source src="/bnner/bcb1.mp4" type="video/mp4" />
         </video>
+        {/* 视频背景叠加层，确保文本清晰可见 */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/90"></div>
 
-        <div className="relative z-10 max-w-5xl mx-auto px-4 mt-[210px]">
-          {/* 文本容器 */}
-          <div className="text-center mb-16 transform -translate-y-[40px] md:-translate-y-[50px] lg:-translate-y-[60px]">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 py-12">
+          {/* 文本容器 - 优化手机显示 */}
+          <div className="text-center mb-16 transform -translate-y-[30px] md:-translate-y-[40px] lg:-translate-y-[60px]">
             <div className="mb-4 md:mb-8 lg:mb-16"></div>
 
             <h1 className="text-[clamp(2rem,5vw,3rem)] md:text-6xl lg:text-7xl font-extrabold mb-6 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex items-center justify-center gap-2 tracking-wide">
@@ -657,13 +659,13 @@ export default function ModernWebsite() {
               </span>
             </h1>
 
-            <p className="text-[clamp(1.25rem,2.5vw,1.75rem)] text-white font-semibold mb-8 md:mb-12 lg:mb-20 max-w-5xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide whitespace-nowrap flex items-center justify-center">
+            <p className="text-[clamp(1rem,2.5vw,1.5rem)] text-white font-semibold mb-6 md:mb-8 lg:mb-12 max-w-5xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide flex items-center justify-center flex-wrap">
               为中东房产开发商、经纪人提供 营销<span className="inline-block text-white mx-1 font-light">·</span>代币化<span className="inline-block text-white mx-1 font-light">·</span>AI 智能体等全栈解决方案
             </p>
 
-            {/* AI搜索框 */}
-            <div className="max-w-3xl mx-auto mb-16">
-              <div className="bg-black/40 backdrop-blur-md p-6 rounded-xl border border-purple-500/30">
+            {/* AI搜索框 - 响应式优化 */}
+            <div className="max-w-3xl mx-auto mb-12 sm:mb-16">
+              <div className="bg-black/40 backdrop-blur-md p-4 sm:p-6 rounded-xl border border-purple-500/30">
                 <div className="relative">
                   <input 
                     type="text" 
@@ -671,7 +673,7 @@ export default function ModernWebsite() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleAISearch()}
-                    className="w-full px-4 py-3 pr-12 rounded-lg bg-gray-800/70 border border-gray-700 focus:border-purple-500 focus:outline-none text-white placeholder-gray-500"
+                    className="w-full px-4 py-3 pr-12 rounded-lg bg-gray-800/70 border border-gray-700 focus:border-purple-500 focus:outline-none text-white placeholder-gray-500 text-sm sm:text-base"
                     disabled={isSearching}
                   />
                   <button 
@@ -691,10 +693,10 @@ export default function ModernWebsite() {
             </div>
           </div>
 
-          {/* 搜索结果展示区 */}
+          {/* 搜索结果展示区 - 响应式优化 */}
           {(showResult || isSearching) && (
-            <div className="max-w-3xl mx-auto mb-16">
-              <div className={`bg-black/40 backdrop-blur-md p-6 rounded-xl border ${isSearching ? 'border-purple-500/30' : searchError ? 'border-red-500/30' : 'border-green-500/30'} transition-all duration-300 animate-fade-in`}>
+            <div className="max-w-3xl mx-auto mb-12 sm:mb-16">
+              <div className={`bg-black/40 backdrop-blur-md p-4 sm:p-6 rounded-xl border ${isSearching ? 'border-purple-500/30' : searchError ? 'border-red-500/30' : 'border-green-500/30'} transition-all duration-300 animate-fade-in`}>
                 <h4 className="text-lg font-bold mb-4 text-center 
                   {isSearching ? 'text-purple-300' : 
                    searchError ? 'text-red-300' : 'text-green-300'}">
@@ -784,7 +786,7 @@ export default function ModernWebsite() {
             <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               中东地产科技与营销全栈服务
             </h2>
-            <p className="text-[clamp(1rem,1.5vw,1.25rem)] text-gray-400 max-w-4xl mx-auto whitespace-nowrap">
+            <p className="text-[clamp(1rem,1.5vw,1.25rem)] text-gray-400 max-w-4xl mx-auto text-center">
               覆盖经纪人IP孵化、房产网站系统、代币化等领域，全链路赋能迪拜房产客户增长与创新
             </p>
           </div>
