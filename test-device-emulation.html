@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设备仿真测试工具</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#9333ea',
+                        secondary: '#4c1d95',
+                        neutral: '#f9fafb',
+                    },
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .device-indicator {
+                height: 10px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-gray-800 text-white min-h-screen">
+    <div class="container mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold mb-8 text-center text-primary">浏览器设备仿真测试工具</h1>
+        <p class="text-center text-gray-300 mb-12 max-w-2xl mx-auto">
+            此工具帮助您了解为什么在不同的浏览器设备仿真与预览中看到的效果不一致。
+        </p>
+
+        <!-- 视口信息卡片 -->
+        <div class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-purple-500/30 mb-10 max-w-3xl mx-auto">
+            <h2 class="text-xl font-bold mb-4 text-purple-300">当前视口信息</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div class="bg-gray-700/50 p-3 rounded-lg">
+                    <span class="text-gray-400">视口宽度:</span>
+                    <span id="viewport-width" class="ml-2 font-mono">正在计算...</span>
+                </div>
+                <div class="bg-gray-700/50 p-3 rounded-lg">
+                    <span class="text-gray-400">视口高度:</span>
+                    <span id="viewport-height" class="ml-2 font-mono">正在计算...</span>
+                </div>
+                <div class="bg-gray-700/50 p-3 rounded-lg">
+                    <span class="text-gray-400">设备像素比 (DPR):</span>
+                    <span id="device-pixel-ratio" class="ml-2 font-mono">正在计算...</span>
+                </div>
+                <div class="bg-gray-700/50 p-3 rounded-lg">
+                    <span class="text-gray-400">用户代理:</span>
+                    <span id="user-agent" class="ml-2 font-mono truncate">正在获取...</span>
+                </div>
+                <div class="bg-gray-700/50 p-3 rounded-lg md:col-span-2">
+                    <span class="text-gray-400">设备类型判断:</span>
+                    <span id="device-type" class="ml-2 font-semibold">正在判断...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 移动设备断点指示器 -->
+        <div class="mb-10 max-w-3xl mx-auto">
+            <h2 class="text-xl font-bold mb-4 text-purple-300">移动设备断点检测 (768px)</h2>
+            <div class="relative h-20 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-purple-500/30 overflow-hidden">
+                <div id="breakpoint-indicator" class="absolute top-0 left-0 bottom-0 bg-red-500/30 border-r border-red-500/50" style="width: 768px;">
+                    <div class="absolute -right-4 top-1/2 -translate-y-1/2 bg-red-500 text-white text-xs px-1 rounded">
+                        768px
+                    </div>
+                </div>
+                <div id="current-width-indicator" class="absolute top-0 bottom-0 bg-green-500/30 border-r border-green-500/50">
+                    <div class="absolute -right-4 top-1/2 -translate-y-1/2 bg-green-500 text-white text-xs px-1 rounded">
+                        当前宽度
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tailwind响应式类可视化 -->
+        <div class="mb-10 max-w-3xl mx-auto">
+            <h2 class="text-xl font-bold mb-4 text-purple-300">Tailwind响应式类状态</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-gray-800/50 backdrop-blur-sm p-3 rounded-lg border border-purple-500/30">
+                    <div id="mobile-indicator" class="device-indicator bg-red-500 mb-2"></div>
+                    <span class="text-sm">mobile (默认)</span>
+                </div>
+                <div class="bg-gray-800/50 backdrop-blur-sm p-3 rounded-lg border border-purple-500/30">
+                    <div id="sm-indicator" class="device-indicator bg-red-500 mb-2"></div>
+                    <span class="text-sm">sm: (≥640px)</span>
+                </div>
+                <div class="bg-gray-800/50 backdrop-blur-sm p-3 rounded-lg border border-purple-500/30">
+                    <div id="md-indicator" class="device-indicator bg-red-500 mb-2"></div>
+                    <span class="text-sm">md: (≥768px)</span>
+                </div>
+                <div class="bg-gray-800/50 backdrop-blur-sm p-3 rounded-lg border border-purple-500/30">
+                    <div id="lg-indicator" class="device-indicator bg-red-500 mb-2"></div>
+                    <span class="text-sm">lg: (≥1024px)</span>
+                </div>
+                <div class="bg-gray-800/50 backdrop-blur-sm p-3 rounded-lg border border-purple-500/30">
+                    <div id="xl-indicator" class="device-indicator bg-red-500 mb-2"></div>
+                    <span class="text-sm">xl: (≥1280px)</span>
+                </div>
+                <div class="bg-gray-800/50 backdrop-blur-sm p-3 rounded-lg border border-purple-500/30">
+                    <div id="2xl-indicator" class="device-indicator bg-red-500 mb-2"></div>
+                    <span class="text-sm">2xl: (≥1536px)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 常见问题解释 -->
+        <div class="mb-10 max-w-3xl mx-auto">
+            <h2 class="text-xl font-bold mb-4 text-purple-300">设备仿真不一致的原因</h2>
+            <div class="space-y-4 text-gray-300">
+                <div class="bg-gray-800/50 backdrop-blur-sm p-4 rounded-lg border border-purple-500/30">
+                    <h3 class="font-semibold text-purple-200 mb-2">1. 视口计算差异</h3>
+                    <p class="text-sm">不同浏览器的设备仿真对视口宽度的计算方式可能略有不同。有些浏览器包含滚动条宽度，而有些则不。</p>
+                </div>
+                <div class="bg-gray-800/50 backdrop-blur-sm p-4 rounded-lg border border-purple-500/30">
+                    <h3 class="font-semibold text-purple-200 mb-2">2. 像素密度处理</h3>
+                    <p class="text-sm">高DPI设备（如Retina显示器）的像素密度会影响浏览器的计算结果，不同浏览器可能有不同的处理方式。</p>
+                </div>
+                <div class="bg-gray-800/50 backdrop-blur-sm p-4 rounded-lg border border-purple-500/30">
+                    <h3 class="font-semibold text-purple-200 mb-2">3. 媒体查询实现差异</h3>
+                    <p class="text-sm">各浏览器对CSS媒体查询的实现可能存在细微差异，导致在断点附近的显示效果不同。</p>
+                </div>
+                <div class="bg-gray-800/50 backdrop-blur-sm p-4 rounded-lg border border-purple-500/30">
+                    <h3 class="font-semibold text-purple-200 mb-2">4. 缓存和资源加载</h3>
+                    <p class="text-sm">浏览器缓存可能导致旧的样式被加载，或者网络条件不同导致资源加载顺序不一致，影响显示效果。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 解决方案建议 -->
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-xl font-bold mb-4 text-purple-300">优化建议</h2>
+            <div class="space-y-3 text-gray-300">
+                <div class="flex items-start">
+                    <div class="mt-1 mr-3 text-green-400">✓</div>
+                    <div>
+                        <p class="text-sm font-medium text-white">使用更广泛的断点范围</p>
+                        <p class="text-xs text-gray-400">不要将关键布局变化精确到单个断点，可以设置一定的缓冲区域。</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="mt-1 mr-3 text-green-400">✓</div>
+                    <div>
+                        <p class="text-sm font-medium text-white">使用Clamp()函数代替固定断点</p>
+                        <p class="text-xs text-gray-400">使用CSS clamp()函数创建平滑的响应式变化，减少断点切换的突兀感。</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="mt-1 mr-3 text-green-400">✓</div>
+                    <div>
+                        <p class="text-sm font-medium text-white">测试多种设备和浏览器</p>
+                        <p class="text-xs text-gray-400">在实际设备和多种浏览器中进行测试，确保一致的用户体验。</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="mt-1 mr-3 text-green-400">✓</div>
+                    <div>
+                        <p class="text-sm font-medium text-white">使用相对单位而非固定像素</p>
+                        <p class="text-xs text-gray-400">优先使用rem、em、vw等相对单位，使布局更具弹性。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 模拟项目中的移动设备检测逻辑
+        const MOBILE_BREAKPOINT = 768;
+        
+        // 更新视口信息
+        function updateViewportInfo() {
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            const devicePixelRatio = window.devicePixelRatio;
+            const userAgent = navigator.userAgent;
+            
+            document.getElementById('viewport-width').textContent = `${viewportWidth}px`;
+            document.getElementById('viewport-height').textContent = `${viewportHeight}px`;
+            document.getElementById('device-pixel-ratio').textContent = devicePixelRatio.toString();
+            document.getElementById('user-agent').textContent = userAgent;
+            
+            // 更新设备类型判断
+            const isMobile = viewportWidth < MOBILE_BREAKPOINT;
+            document.getElementById('device-type').textContent = isMobile ? '移动设备' : '桌面设备';
+            document.getElementById('device-type').className = isMobile ? 'ml-2 font-semibold text-green-400' : 'ml-2 font-semibold text-blue-400';
+            
+            // 更新当前宽度指示器
+            const breakpointIndicator = document.getElementById('breakpoint-indicator');
+            const currentWidthIndicator = document.getElementById('current-width-indicator');
+            const containerWidth = document.querySelector('.mb-10.max-w-3xl').offsetWidth;
+            
+            // 计算相对宽度百分比
+            const breakpointPercent = Math.min(100, (768 / viewportWidth) * 100);
+            const currentWidthPercent = 100;
+            
+            breakpointIndicator.style.width = `${breakpointPercent}%`;
+            currentWidthIndicator.style.width = `${currentWidthPercent}%`;
+            
+            // 更新响应式类指示器
+            updateResponsiveIndicators(viewportWidth);
+        }
+        
+        // 更新响应式类状态指示器
+        function updateResponsiveIndicators(width) {
+            document.getElementById('mobile-indicator').className = 'device-indicator bg-green-500 mb-2';
+            document.getElementById('sm-indicator').className = width >= 640 ? 'device-indicator bg-green-500 mb-2' : 'device-indicator bg-red-500 mb-2';
+            document.getElementById('md-indicator').className = width >= 768 ? 'device-indicator bg-green-500 mb-2' : 'device-indicator bg-red-500 mb-2';
+            document.getElementById('lg-indicator').className = width >= 1024 ? 'device-indicator bg-green-500 mb-2' : 'device-indicator bg-red-500 mb-2';
+            document.getElementById('xl-indicator').className = width >= 1280 ? 'device-indicator bg-green-500 mb-2' : 'device-indicator bg-red-500 mb-2';
+            document.getElementById('2xl-indicator').className = width >= 1536 ? 'device-indicator bg-green-500 mb-2' : 'device-indicator bg-red-500 mb-2';
+        }
+        
+        // 初始加载和窗口调整大小时更新信息
+        window.addEventListener('load', updateViewportInfo);
+        window.addEventListener('resize', updateViewportInfo);
+    </script>
+</body>
+</html>

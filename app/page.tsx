@@ -636,7 +636,7 @@ export default function ModernWebsite() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center overflow-hidden">
+      <section id="home" className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden">
         {/* Hero Background Video - 优化手机适配 */}
         <video
           className="absolute inset-0 w-full h-full object-cover object-center"
@@ -644,19 +644,19 @@ export default function ModernWebsite() {
           muted
           playsInline
           loop
-          poster="/bnner/b4.jpg"
+          poster="/hero-background.png"
         >
           <source src="/bnner/bcb1.mp4" type="video/mp4" />
         </video>
-        {/* 视频背景叠加层，确保文本清晰可见 */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/90"></div>
+        {/* 视频背景叠加层，确保文本清晰可见 - 手机端优化 */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90"></div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 py-12">
-          {/* 文本容器 - 优化手机显示 */}
-          <div className="text-center mb-16 transform -translate-y-[30px] md:-translate-y-[40px] lg:-translate-y-[60px]">
-            <div className="mb-4 md:mb-8 lg:mb-16"></div>
+          {/* 文本容器 - 手机端优化 */}
+          <div className="text-center mb-8 transform -translate-y-[20px] md:-translate-y-[30px] lg:-translate-y-[50px]">
+            <div className="mb-2 md:mb-6 lg:mb-12"></div>
 
-            <h1 className="text-[clamp(1.6rem,4vw,2.2rem)] md:text-6xl lg:text-7xl font-extrabold mb-6 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex items-center justify-center gap-2 tracking-wide">
+            <h1 className="text-[clamp(1.6rem,4vw,2.2rem)] md:text-6xl lg:text-7xl font-extrabold mb-4 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex items-center justify-center gap-2 tracking-wide">
               <span className="text-white transition-all duration-300 hover:text-purple-200">
                 中东地产数字营销与科技服务专家
               </span>
@@ -666,9 +666,9 @@ export default function ModernWebsite() {
               为中东房产开发商、经纪人提供 营销<span className="mx-1">·</span>代币化<span className="mx-1">·</span>AI 智能体等全栈解决方案
             </p>
 
-            {/* AI搜索框 - 响应式优化 */}
-            <div className="max-w-3xl mx-auto mb-12 sm:mb-16">
-              <div className="bg-black/40 backdrop-blur-md p-4 sm:p-6 rounded-xl border border-purple-500/30">
+            {/* AI搜索框 - 手机端优化 */}
+            <div className="max-w-3xl mx-auto mb-8 sm:mb-12">
+              <div className="bg-black/40 backdrop-blur-md p-4 sm:p-5 rounded-xl border border-purple-500/30 shadow-lg shadow-purple-500/10">
                 <div className="relative">
                   <input 
                     type="text" 
@@ -676,11 +676,11 @@ export default function ModernWebsite() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleAISearch()}
-                    className="w-full px-4 py-3 pr-12 rounded-lg bg-gray-800/70 border border-gray-700 focus:border-purple-500 focus:outline-none text-white placeholder-gray-500 text-sm sm:text-base"
+                    className="w-full px-4 py-3 pr-12 rounded-lg bg-gray-800/80 border border-gray-700 focus:border-purple-500 focus:outline-none text-white placeholder-gray-500 text-sm sm:text-base transition-all"
                     disabled={isSearching}
                   />
                   <button 
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-purple-600 hover:bg-purple-700 text-white p-2 rounded-lg transition-colors"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-purple-600 hover:bg-purple-700 text-white p-2 rounded-lg transition-colors active:scale-95"
                     onClick={handleAISearch}
                     disabled={isSearching || !searchQuery.trim()}
                   >
@@ -699,7 +699,7 @@ export default function ModernWebsite() {
           {/* 搜索结果展示区 - 响应式优化 */}
           {(showResult || isSearching) && (
             <div className="max-w-3xl mx-auto mb-12 sm:mb-16">
-              <div className={`bg-black/40 backdrop-blur-md p-4 sm:p-6 rounded-xl border ${isSearching ? 'border-purple-500/30' : searchError ? 'border-red-500/30' : 'border-green-500/30'} transition-all duration-300 animate-fade-in`}>
+              <div className={`bg-black/40 backdrop-blur-md p-4 sm:p-5 rounded-xl border ${isSearching ? 'border-purple-500/30' : searchError ? 'border-red-500/30' : 'border-green-500/30'} transition-all duration-300 animate-fade-in shadow-lg`}>
                 <h4 className="text-lg font-bold mb-4 text-center 
                   {isSearching ? 'text-purple-300' : 
                    searchError ? 'text-red-300' : 'text-green-300'}">
