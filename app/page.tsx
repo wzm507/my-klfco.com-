@@ -789,7 +789,7 @@ export default function ModernWebsite() {
               <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 中东地产科技与营销全栈服务
               </h2>
-              <p className="text-[clamp(1rem,1.2vw,1.2rem)] text-gray-400 max-w-xl mx-auto text-center leading-relaxed">
+              <p className="text-[clamp(0.8rem,0.9vw,1.1rem)] text-gray-400 max-w-sm sm:max-w-xl mx-auto text-center leading-relaxed sm:leading-relaxed">
                 覆盖经纪人IP孵化、房产网站系统、代币化等领域，全链路赋能迪拜房产客户增长与创新
               </p>
             </div>
