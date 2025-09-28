@@ -638,16 +638,45 @@ export default function ModernWebsite() {
       {/* Hero Section */}
       <section id="home" className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden">
         {/* Hero Background Video - 优化手机适配 */}
-        <video
-          className="absolute inset-0 w-full h-full object-cover object-center"
-          autoPlay
-          muted
-          playsInline
-          loop
-          poster="/hero-background.png"
-        >
-          <source src="/bnner/bcb1.mp4" type="video/mp4" />
-        </video>
+        {/* Banner 视频背景 - 优化多端适配 */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute top-0 left-0 w-full h-full object-cover"
+            poster="/hero-background.png"
+          >
+            <source src="/bnner/bcb1.mp4" type="video/mp4" />
+            {/* 视频加载失败时显示备用图片 */}
+            <img 
+              src="/hero-background.png" 
+              alt="背景" 
+              className="w-full h-full object-cover object-center"
+            />
+          </video>
+          {/* 视频加载动画 */}
+          <div id="videoLoader" className="absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-500">
+            <div className="w-12 h-12 border-4 border-purple-400 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+          <script dangerouslySetInnerHTML={{ __html: `
+            document.addEventListener('DOMContentLoaded', function() {
+              const video = document.querySelector('video[poster="/hero-background.png"]');
+              const loader = document.getElementById('videoLoader');
+              
+              if (video && loader) {
+                // 视频加载完成后隐藏加载动画
+                video.addEventListener('loadeddata', function() {
+                  loader.style.opacity = '0';
+                  setTimeout(() => {
+                    loader.style.display = 'none';
+                  }, 500);
+                });
+              }
+            });
+          `}} />
+        </div>
         {/* 视频背景叠加层，确保文本清晰可见 - 手机端优化 */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90"></div>
 
