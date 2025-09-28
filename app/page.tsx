@@ -656,13 +656,13 @@ export default function ModernWebsite() {
           <div className="text-center mb-16 transform -translate-y-[30px] md:-translate-y-[40px] lg:-translate-y-[60px]">
             <div className="mb-4 md:mb-8 lg:mb-16"></div>
 
-            <h1 className="text-[clamp(1.5rem,5vw,2.5rem)] md:text-6xl lg:text-7xl font-extrabold mb-6 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex items-center justify-center gap-2 tracking-wide">
+            <h1 className="text-[clamp(1.2rem,4vw,2.2rem)] md:text-6xl lg:text-7xl font-extrabold mb-6 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex items-center justify-center gap-2 tracking-wide">
               <span className="text-white transition-all duration-300 hover:text-purple-200">
                 中东地产数字营销与科技服务专家
               </span>
             </h1>
 
-            <p className="text-[clamp(0.9rem,2vw,1.3rem)] text-white font-semibold mb-6 md:mb-8 lg:mb-12 max-w-5xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide">
+            <p className="text-[clamp(0.8rem,1.8vw,1.2rem)] text-white font-semibold mb-6 md:mb-8 lg:mb-12 max-w-4xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide">
               为中东房产开发商、经纪人提供 营销<span className="mx-1">·</span>代币化<span className="mx-1">·</span>AI 智能体等全栈解决方案
             </p>
 
@@ -789,7 +789,7 @@ export default function ModernWebsite() {
               <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 中东地产科技与营销全栈服务
               </h2>
-              <p className="text-[clamp(0.85rem,1vw,1.1rem)] text-gray-400 max-w-2xl mx-auto text-center leading-relaxed">
+              <p className="text-[clamp(0.75rem,0.9vw,1rem)] text-gray-400 max-w-xl mx-auto text-center leading-relaxed">
                 覆盖经纪人IP孵化、房产网站系统、代币化等领域，全链路赋能迪拜房产客户增长与创新
               </p>
             </div>
