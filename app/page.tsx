@@ -633,7 +633,7 @@ export default function ModernWebsite() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section id="home" className="relative min-h-[70vh] md:min-h-screen flex items-center justify-center overflow-hidden">
         {/* Hero Background Video - 优化手机适配 */}
         <video
           className="absolute inset-0 w-full h-full object-cover object-center"
@@ -659,8 +659,8 @@ export default function ModernWebsite() {
               </span>
             </h1>
 
-            <p className="text-[clamp(1rem,2.5vw,1.5rem)] text-white font-semibold mb-6 md:mb-8 lg:mb-12 max-w-5xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide flex items-center justify-center flex-wrap">
-              为中东房产开发商、经纪人提供 营销<span className="inline-block text-white mx-1 font-light">·</span>代币化<span className="inline-block text-white mx-1 font-light">·</span>AI 智能体等全栈解决方案
+            <p className="text-[clamp(1rem,2.5vw,1.5rem)] text-white font-semibold mb-6 md:mb-8 lg:mb-12 max-w-5xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide">
+              为中东房产开发商、经纪人提供 营销<span className="mx-1">·</span>代币化<span className="mx-1">·</span>AI 智能体等全栈解决方案
             </p>
 
             {/* AI搜索框 - 响应式优化 */}
@@ -786,7 +786,7 @@ export default function ModernWebsite() {
             <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               中东地产科技与营销全栈服务
             </h2>
-            <p className="text-[clamp(1rem,1.5vw,1.25rem)] text-gray-400 max-w-4xl mx-auto text-center">
+            <p className="text-[clamp(1rem,1.5vw,1.25rem)] text-gray-400 max-w-4xl mx-auto text-center leading-relaxed">
               覆盖经纪人IP孵化、房产网站系统、代币化等领域，全链路赋能迪拜房产客户增长与创新
             </p>
           </div>
