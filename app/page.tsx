@@ -1409,7 +1409,7 @@ export default function ModernWebsite() {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-2">邮箱联系</h3>
-                  <p className="text-gray-400">hello@klfstudio.com</p>
+                  <p className="text-gray-400">Robin@klfco.com</p>
                 </div>
               </div>
 
