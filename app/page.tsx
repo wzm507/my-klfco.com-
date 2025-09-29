@@ -669,7 +669,7 @@ export default function ModernWebsite() {
 
             <h1 className="text-[clamp(1.4rem,3vw,2rem)] md:text-6xl lg:text-7xl font-extrabold mb-3 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex items-center justify-center gap-2 tracking-wide">
               <span className="text-white transition-all duration-300 hover:text-purple-200">
-                中东地产数字营销与科技服务专家
+                中东地产营销与技术专家
               </span>
             </h1>
 
@@ -801,9 +801,9 @@ export default function ModernWebsite() {
               <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 中东地产科技与营销全栈服务
               </h2>
-              <p className="text-[clamp(0.8rem,0.9vw,1.1rem)] text-gray-400 max-w-sm sm:max-w-xl mx-auto text-center leading-relaxed sm:leading-relaxed tracking-wide">
-                覆盖经纪人IP孵化、房产网站系统、代币化等领域<br/>
-                全链路赋能迪拜房产客户增长与创新
+              <p className="text-[clamp(0.8rem,0.9vw,1.1rem)] text-gray-400 max-w-xs sm:max-w-sm md:max-w-xl mx-auto text-center leading-relaxed sm:leading-relaxed md:leading-relaxed tracking-wide">
+                <span className="block sm:block md:inline">覆盖经纪人IP孵化、房产网站系统、代币化等领域</span>
+                <span className="block">全链路赋能迪拜房产客户增长与创新</span>
               </p>
             </div>
 
