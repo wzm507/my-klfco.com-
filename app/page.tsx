@@ -802,8 +802,8 @@ export default function ModernWebsite() {
                 中东地产科技与营销全栈服务
               </h2>
               <p className="text-[clamp(0.8rem,0.9vw,1.1rem)] text-gray-400 max-w-sm sm:max-w-xl mx-auto text-center leading-relaxed sm:leading-relaxed tracking-wide">
-                <span className="block sm:inline">覆盖经纪人IP孵化、房产网站系统、代币化等领域</span>
-                <span className="block sm:inline">全链路赋能迪拜房产客户增长与创新</span>
+                <span className="block">覆盖经纪人IP孵化、房产网站系统、代币化等领域</span>
+                <span className="block">全链路赋能迪拜房产客户增长与创新</span>
               </p>
             </div>
 
