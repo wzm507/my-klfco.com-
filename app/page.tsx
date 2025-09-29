@@ -637,47 +637,29 @@ export default function ModernWebsite() {
 
       {/* Hero Section */}
       <section id="home" className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Hero Background Video - 优化手机适配 */}
-        {/* Banner 视频背景 - 优化多端适配 */}
+        {/* Banner 视频背景 - 手机端16:9样式适配 */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute top-0 left-0 w-full h-full object-cover"
-            poster="/hero-background.png"
-          >
-            <source src="/bnner/bcb1.mp4" type="video/mp4" />
-            {/* 视频加载失败时显示备用图片 */}
-            <img 
-              src="/hero-background.png" 
-              alt="背景" 
-              className="w-full h-full object-cover object-center"
-            />
-          </video>
-          {/* 视频加载动画 */}
-          <div id="videoLoader" className="absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-500">
-            <div className="w-12 h-12 border-4 border-purple-400 border-t-transparent rounded-full animate-spin"></div>
+          {/* 为手机端设置16:9比例容器 */}
+          <div className="relative w-full h-full sm:aspect-[16/9] sm:h-auto overflow-hidden">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute top-0 left-0 w-full h-full object-cover"
+              poster="/hero-background.png"
+            >
+              <source src="/bnner/BCB1.mp4" type="video/mp4" />
+              {/* 视频加载失败时显示备用图片 */}
+              <img 
+                src="/hero-background.png" 
+                alt="背景" 
+                className="w-full h-full object-cover object-center"
+              />
+            </video>
           </div>
-          <script dangerouslySetInnerHTML={{ __html: `
-            document.addEventListener('DOMContentLoaded', function() {
-              const video = document.querySelector('video[poster="/hero-background.png"]');
-              const loader = document.getElementById('videoLoader');
-              
-              if (video && loader) {
-                // 视频加载完成后隐藏加载动画
-                video.addEventListener('loadeddata', function() {
-                  loader.style.opacity = '0';
-                  setTimeout(() => {
-                    loader.style.display = 'none';
-                  }, 500);
-                });
-              }
-            });
-          `}} />
         </div>
-        {/* 视频背景叠加层，确保文本清晰可见 - 手机端优化 */}
+        {/* 视频背景叠加层，确保文本清晰可见 - 多端适配 */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90"></div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 py-12">
@@ -685,19 +667,19 @@ export default function ModernWebsite() {
           <div className="text-center mb-8 transform -translate-y-[20px] md:-translate-y-[30px] lg:-translate-y-[50px]">
             <div className="mb-2 md:mb-6 lg:mb-12"></div>
 
-            <h1 className="text-[clamp(1.6rem,4vw,2.2rem)] md:text-6xl lg:text-7xl font-extrabold mb-4 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex items-center justify-center gap-2 tracking-wide">
+            <h1 className="text-[clamp(1.4rem,3vw,2rem)] md:text-6xl lg:text-7xl font-extrabold mb-3 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex items-center justify-center gap-2 tracking-wide">
               <span className="text-white transition-all duration-300 hover:text-purple-200">
                 中东地产数字营销与科技服务专家
               </span>
             </h1>
 
-            <p className="text-[clamp(1rem,2vw,1.3rem)] text-white font-semibold mb-6 md:mb-8 lg:mb-12 max-w-4xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide">
+            <p className="text-[clamp(0.9rem,1.5vw,1.2rem)] text-white font-medium mb-4 sm:mb-8 lg:mb-12 max-w-2xl sm:max-w-4xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide">
               为中东房产开发商、经纪人提供 营销<span className="mx-1">·</span>代币化<span className="mx-1">·</span>AI 智能体等全栈解决方案
             </p>
 
             {/* AI搜索框 - 手机端优化 */}
             <div className="max-w-3xl mx-auto mb-8 sm:mb-12">
-              <div className="bg-black/40 backdrop-blur-md p-4 sm:p-5 rounded-xl border border-purple-500/30 shadow-lg shadow-purple-500/10">
+              <div className="bg-black/40 backdrop-blur-md p-3 sm:p-5 rounded-xl border border-purple-500/30 shadow-lg shadow-purple-500/10">
                 <div className="relative">
                   <input 
                     type="text" 
@@ -705,13 +687,14 @@ export default function ModernWebsite() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleAISearch()}
-                    className="w-full px-4 py-3 pr-12 rounded-lg bg-gray-800/80 border border-gray-700 focus:border-purple-500 focus:outline-none text-white placeholder-gray-500 text-sm sm:text-base transition-all"
+                    className="w-full px-4 py-3.5 pr-12 rounded-lg bg-gray-800/80 border border-gray-700 focus:border-purple-500 focus:outline-none text-white placeholder-gray-500 text-sm sm:text-base transition-all"
                     disabled={isSearching}
                   />
                   <button 
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-purple-600 hover:bg-purple-700 text-white p-2 rounded-lg transition-colors active:scale-95"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-purple-600 hover:bg-purple-700 text-white p-2.5 rounded-lg transition-colors active:scale-95"
                     onClick={handleAISearch}
                     disabled={isSearching || !searchQuery.trim()}
+                    aria-label="搜索"
                   >
                     {isSearching ? (
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -720,7 +703,7 @@ export default function ModernWebsite() {
                     )}
                   </button>
                 </div>
-                <p className="text-xs text-gray-400 mt-3 text-center">例如："如何提升品牌出海影响力？" 或 "中东市场有哪些特点？"</p>
+                <p className="text-[11px] sm:text-xs text-gray-400 mt-2 sm:mt-3 text-center">例如："如何提升品牌出海影响力？" 或 "中东市场有哪些特点？"</p>
               </div>
             </div>
           </div>
@@ -818,8 +801,9 @@ export default function ModernWebsite() {
               <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 中东地产科技与营销全栈服务
               </h2>
-              <p className="text-[clamp(0.8rem,0.9vw,1.1rem)] text-gray-400 max-w-sm sm:max-w-xl mx-auto text-center leading-relaxed sm:leading-relaxed">
-                覆盖经纪人IP孵化、房产网站系统、代币化等领域，全链路赋能迪拜房产客户增长与创新
+              <p className="text-[clamp(0.8rem,0.9vw,1.1rem)] text-gray-400 max-w-sm sm:max-w-xl mx-auto text-center leading-relaxed sm:leading-relaxed tracking-wide">
+                <span className="block sm:inline">覆盖经纪人IP孵化、房产网站系统、代币化等领域</span>
+                <span className="block sm:inline">全链路赋能迪拜房产客户增长与创新</span>
               </p>
             </div>
 
