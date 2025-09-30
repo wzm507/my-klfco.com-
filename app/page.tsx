@@ -641,6 +641,13 @@ export default function ModernWebsite() {
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           {/* 为手机端设置16:9比例容器 */}
           <div className="relative w-full h-full sm:aspect-[16/9] sm:h-auto overflow-hidden">
+            {/* 优先显示静态图片，避免视频加载错误影响用户体验 */}
+            <img 
+              src="/hero-background.png" 
+              alt="背景" 
+              className="absolute top-0 left-0 w-full h-full object-cover object-center z-10"
+            />
+            {/* 尝试加载视频作为背景增强效果 */}
             <video
               autoPlay
               muted
@@ -648,14 +655,14 @@ export default function ModernWebsite() {
               playsInline
               className="absolute top-0 left-0 w-full h-full object-cover"
               poster="/hero-background.png"
+              onError={(e) => {
+                // 视频加载错误时，隐藏视频元素
+                if (e.target instanceof HTMLVideoElement) {
+                  e.target.style.display = 'none';
+                }
+              }}
             >
-              <source src="/bnner/BCB1.mp4" type="video/mp4" />
-              {/* 视频加载失败时显示备用图片 */}
-              <img 
-                src="/hero-background.png" 
-                alt="背景" 
-                className="w-full h-full object-cover object-center"
-              />
+              <source src="/bnner/bcb1.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
