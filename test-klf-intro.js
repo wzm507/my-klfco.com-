@@ -1,4 +1,4 @@
-// 测试AI搜索API中KLF公司详细介绍的脚本
+npm run devnpm run dev// 测试AI搜索API中KLF公司详细介绍的脚本
 const http = require('http');
 
 // 测试数据 - 使用用户提供的搜索关键词
