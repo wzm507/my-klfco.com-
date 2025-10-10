@@ -634,36 +634,44 @@ export default function ModernWebsite() {
 
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Hero Background Video */}
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
-          muted
-          playsInline
-          loop
-          poster="/bnner/b4.jpg"
-        >
-          <source src="/bnner/bcb1.mp4" type="video/mp4" />
-        </video>
+        {/* Hero Background Video with Fallback */}
+        <div className="absolute inset-0 w-full h-full">
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            muted
+            playsInline
+            loop
+            preload="auto"
+            onError={(e) => {
+              console.error('Video failed to load:', e);
+            }}
+          >
+            <source src="/bnner/bcb1.mp4" type="video/mp4" />
+          </video>
+        </div>
 
-        <div className="relative z-10 max-w-5xl mx-auto px-4 mt-[210px]">
+        {/* 40% Transparent Black Card Overlay */}
+        <div className="absolute inset-0 bg-black/40 z-0"></div>
+
+        <div className="relative z-10 max-w-5xl mx-auto px-4 mt-[150px] sm:mt-[210px]">
           {/* 文本容器 */}
-          <div className="text-center mb-16 transform -translate-y-[40px] md:-translate-y-[50px] lg:-translate-y-[60px]">
+          <div className="text-center mb-12 sm:mb-16 transform -translate-y-[20px] md:-translate-y-[50px] lg:-translate-y-[60px]">
             <div className="mb-4 md:mb-8 lg:mb-16"></div>
 
-            <h1 className="text-[clamp(2rem,5vw,3rem)] md:text-6xl lg:text-7xl font-extrabold mb-6 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex items-center justify-center gap-2 tracking-wide">
+            <h1 className="text-[clamp(2rem,5vw,3rem)] md:text-6xl lg:text-7xl font-extrabold mb-6 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex flex-col items-center justify-center gap-2 tracking-wide">
               <span className="text-white transition-all duration-300 hover:text-purple-200">
-                中东地产数字营销与科技服务专家
+                中东地产营销与科技服务专家
               </span>
             </h1>
 
-            <p className="text-[clamp(1.25rem,2.5vw,1.75rem)] text-white font-semibold mb-8 md:mb-12 lg:mb-20 max-w-5xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide whitespace-nowrap flex items-center justify-center">
+            <p className="text-[clamp(1.25rem,2.5vw,1.75rem)] text-white font-light mb-8 md:mb-12 lg:mb-20 max-w-5xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide leading-relaxed whitespace-pre-line">
               为中东房产开发商、经纪人提供 营销<span className="inline-block text-white mx-1 font-light">·</span>代币化<span className="inline-block text-white mx-1 font-light">·</span>AI 智能体等全栈解决方案
             </p>
 
             {/* AI搜索框 */}
-            <div className="max-w-3xl mx-auto mb-16">
-              <div className="bg-black/40 backdrop-blur-md p-6 rounded-xl border border-purple-500/30">
+            <div className="max-w-full sm:max-w-3xl mx-auto mb-12 md:mb-16">
+              <div className="bg-black/40 backdrop-blur-md p-4 sm:p-6 rounded-xl border border-purple-500/30">
                 <div className="relative">
                   <input 
                     type="text" 
@@ -784,7 +792,7 @@ export default function ModernWebsite() {
             <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               中东地产科技与营销全栈服务
             </h2>
-            <p className="text-[clamp(1rem,1.5vw,1.25rem)] text-gray-400 max-w-4xl mx-auto whitespace-nowrap">
+            <p className="text-[clamp(1rem,1.5vw,1.25rem)] text-gray-400 max-w-4xl mx-auto text-center leading-relaxed">
               覆盖经纪人IP孵化、房产网站系统、代币化等领域，全链路赋能迪拜房产客户增长与创新
             </p>
           </div>
@@ -915,7 +923,7 @@ export default function ModernWebsite() {
         <DialogContent className="bg-gray-900/80 backdrop-blur-md border border-purple-500/30 text-white p-8 rounded-lg text-center">
           <div className="flex items-center justify-center space-x-2 mb-6">
             <Phone className="h-5 w-5 text-purple-300" />
-            <p className="text-xl text-gray-200">15248027276</p>
+            <p className="text-xl text-gray-200">13736113376</p>
           </div>
           <p className="text-gray-400 mb-8 max-w-md mx-auto">
             如有任何咨询需求，请通过以上电话联系我们，我们将竭诚为您服务。
@@ -1391,7 +1399,7 @@ export default function ModernWebsite() {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-2">邮箱联系</h3>
-                  <p className="text-gray-400">hello@klfstudio.com</p>
+                  <p className="text-gray-400">Robin@klfco.com</p>
                 </div>
               </div>
 

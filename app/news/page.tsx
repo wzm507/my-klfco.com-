@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '../../components/ui/button'
 import { Card, CardContent } from '../../components/ui/card'
 import { Badge } from '../../components/ui/badge'
@@ -13,7 +14,7 @@ const newsItems = [
     excerpt: "迪拜虚拟资产监管局（VARA）2024年4月批准全球首张元宇宙房产交易牌照，允许开发者出售带产权的3D虚拟地块。首批开放迪拜码头区等5个数字孪生社区，交易需强制使用区块链产权存证。",
     date: "2024年4月",
     readTime: "3分钟阅读",
-    image: "/Image/微信图片_20250806150417.png",
+    image: "/Image/XW1/微信图片_20250819102012.jpg",
     tags: ["虚拟资产", "区块链", "元宇宙"],
   },
   {
@@ -23,7 +24,7 @@ const newsItems = [
     excerpt: "阿联酋人工智能部发布AI房产经纪人认证体系（2024Q2生效），要求AI决策过程需可追溯且符合伊斯兰金融法。首批12家机构获准测试AI销售代理，对话机器人误判率需＜3%。",
     date: "2024年Q2",
     readTime: "3分钟阅读",
-    image: "/Image/微信图片_20250806152141.png",
+    image: "/Image/XW2/微信图片_20250819101830.jpg",
     tags: ["AI技术", "认证体系", "伊斯兰金融"],
   },
   {
@@ -33,7 +34,7 @@ const newsItems = [
     excerpt: "迪拜土地局（DLD）2024年推出全息投影看房终端，覆盖全市90%新盘，买家可裸眼查看建筑日照变化。减少70%实地看房需求，终端日均使用量破1.2万次。",
     date: "2024年",
     readTime: "3分钟阅读",
-    image: "/Image/微信图片_20250806152157.png",
+    image: "/Image/XW3/微信图片_20250819103236.png",
     tags: ["全息技术", "看房体验", "科技创新"],
   },
   {
@@ -43,7 +44,7 @@ const newsItems = [
     excerpt: "迪拜国际金融法院裁定首例区块链房产交易违约案（Case No. DIFC-2024-RE-001），判定智能合约自动执行罚则有效。违约方被强制转移产权NFT，节省诉讼时间83天。",
     date: "2024年",
     readTime: "4分钟阅读",
-    image: "/Image/微信图片_20250806152203.png",
+    image: "/Image/XW4/微信图片_20250819104152.png",
     tags: ["智能合约", "区块链", "法律案例"],
   },
   {
@@ -53,7 +54,7 @@ const newsItems = [
     excerpt: "2024年斋月期间迪拜房产询盘量逆势增长40%，主因开发商大规模启用AI礼宾机器人提供夜间咨询服务。22:00-02:00成交占比达58%，机器人平均响应速度11秒。",
     date: "2024年斋月",
     readTime: "3分钟阅读",
-    image: "/Image/微信图片_20250806150417.png",
+    image: "/Image/XW5/微信图片_20250819111920.jpg",
     tags: ["AI营销", "文化适配", "客户服务"],
   },
   {
@@ -89,10 +90,17 @@ export default function NewsPage() {
               className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:scale-105 overflow-hidden flex flex-col h-full"
             >
               <div className="relative h-48 overflow-hidden">
-                <img
-                  src={article.image || "/placeholder.svg"}
+                <Image
+                  src={article.image || '/placeholder.jpg'}
                   alt={article.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="100vw"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    if (target.src.includes('/placeholder.jpg')) return;
+                    target.src = '/placeholder.jpg';
+                  }}
                 />
                 <div className="absolute top-4 left-4">
                   <Badge className="bg-purple-600/80 text-white">{article.category}</Badge>
@@ -132,15 +140,10 @@ export default function NewsPage() {
           ))}
         </div>
 
-        <div className="text-center mt-12 space-x-4">
+        <div className="text-center mt-12">
           <Link href="/" passHref>
             <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 px-8 py-3">
               返回首页
-            </Button>
-          </Link>
-          <Link href="/news/1" passHref>
-            <Button className="bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 px-8 py-3">
-              测试新闻1
             </Button>
           </Link>
         </div>

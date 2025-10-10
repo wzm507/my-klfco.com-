@@ -14,6 +14,18 @@ const nextConfig = {
       '@': __dirname,
     };
 
+    // 配置处理中文字符
+    config.module.rules.push({
+      test: /\.(png|jpe?g|gif|svg|webp)$/i,
+      loader: 'file-loader',
+      options: {
+        name: '[name].[hash].[ext]',
+        outputPath: 'static/images/',
+        publicPath: '/_next/static/images/',
+        esModule: false,
+      },
+    });
+
     return config;
   },
   eslint: {
@@ -23,7 +35,16 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    unoptimized: false,
+    domains: [],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+    ],
+    // 支持中文字符路径
+    disableStaticImages: false,
   },
   rewrites: async () => {
     return [
