@@ -641,7 +641,6 @@ export default function ModernWebsite() {
           muted
           playsInline
           loop
-          poster="/bnner/b4.jpg"
         >
           <source src="/bnner/bcb1.mp4" type="video/mp4" />
         </video>
