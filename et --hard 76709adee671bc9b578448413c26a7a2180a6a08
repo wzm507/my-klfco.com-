@@ -1,0 +1,132 @@
+[33mcommit 44b54acd335e39af576e1ba252fa79181de4698b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: wzm507 <15305443429@163.com>
+Date:   Sat Oct 11 10:17:37 2025 +0800
+
+    添加 @babel/preset-typescript 到 Babel 配置
+
+[33mcommit de2f1a5cdc90fb3f707284a9c0b5a53464d17945[m
+Author: wzm507 <15305443429@163.com>
+Date:   Sat Oct 11 09:39:37 2025 +0800
+
+    修复 Babel 配置格式，适配 Next.js 构建
+
+[33mcommit 76709adee671bc9b578448413c26a7a2180a6a08[m
+Author: wzm507 <15305443429@163.com>
+Date:   Fri Oct 10 17:36:34 2025 +0800
+
+    更新依赖锁文件 package-lock.json
+
+[33mcommit 01fb1e5a600ee01aff6804ed3956bff2bcbcedf9[m
+Merge: 87c6f83 e8779cd
+Author: wzm507 <15305443429@163.com>
+Date:   Fri Oct 10 17:29:47 2025 +0800
+
+    Merge branch 'main' of https://github.com/wzm507/my-klfco.com-
+
+[33mcommit 87c6f83b5c1a190812c8db08a383b3883b32e17c[m
+Author: wzm507 <15305443429@163.com>
+Date:   Fri Oct 10 16:56:48 2025 +0800
+
+    临时提交：本地对 page.tsx 的修改
+
+[33mcommit e8779cd1e3a5d9d4f1f0a0febc94224b72b2003e[m
+Author: wzm507 <15305443429@163.com>
+Date:   Tue Sep 30 13:53:29 2025 +0800
+
+    9.30-2
+
+[33mcommit 6e696673f3e4ec61b89f0dafc0bca52588d21f08[m
+Author: wzm507 <15305443429@163.com>
+Date:   Tue Sep 30 09:52:23 2025 +0800
+
+    9.30-1
+
+[33mcommit aa075dd1d06bd83f838160102ee53ec796b6a363[m
+Author: wzm507 <15305443429@163.com>
+Date:   Mon Sep 29 17:37:50 2025 +0800
+
+    全覆盖：替换为新代码版本
+
+[33mcommit d9a3dcb7183113502a326c7352a9f76f24add43d[m
+Author: wzm507 <15305443429@163.com>
+Date:   Mon Sep 29 15:57:32 2025 +0800
+
+    9.29-3
+
+[33mcommit eb9f582cd50e26829d72eb497c6728ee4f7d4cb5[m
+Author: wzm507 <15305443429@163.com>
+Date:   Mon Sep 29 14:56:10 2025 +0800
+
+    9.29-2
+
+[33mcommit 99bea862634fdf81507c4985e8d6d4e124a5720c[m
+Author: wzm507 <15305443429@163.com>
+Date:   Mon Sep 29 14:48:26 2025 +0800
+
+    9.29-1
+
+[33mcommit a507afdda5e3dfd02871e6b8f2b24ddb985b96d7[m
+Author: wzm507 <15305443429@163.com>
+Date:   Mon Sep 29 14:39:35 2025 +0800
+
+    1
+
+[33mcommit 6b9fcdba182847ca3e17e8e03f911eafc9312f70[m
+Author: wzm507 <15305443429@163.com>
+Date:   Sun Sep 28 17:37:17 2025 +0800
+
+    5
+
+[33mcommit 41fd286444939e6ea32095742654c4654a22440c[m
+Author: wzm507 <15305443429@163.com>
+Date:   Sun Sep 28 14:00:01 2025 +0800
+
+    4
+
+[33mcommit dc6f32eedc2798a9c2365735dd6416318d2b65bf[m
+Author: wzm507 <15305443429@163.com>
+Date:   Sun Sep 28 13:46:01 2025 +0800
+
+    3
+
+[33mcommit bf21ab70761fb95adef0cb13d0b039e14b33c8f1[m
+Author: wzm507 <15305443429@163.com>
+Date:   Sun Sep 28 11:39:35 2025 +0800
+
+    2
+
+[33mcommit f59819a9f0a21192cf571a9826ab191ac7530b4e[m
+Author: wzm507 <15305443429@163.com>
+Date:   Sun Sep 28 11:33:41 2025 +0800
+
+    描述本次修改的内容，例如：优化首页加载速度，修复搜索功能bug
+
+[33mcommit 09e0ad2b067ecb596d82b649fbf4afbe827fc854[m
+Author: wzm507 <15305443429@163.com>
+Date:   Sun Sep 28 11:25:59 2025 +0800
+
+    再次提交
+
+[33mcommit af9178d1470c039053e12d78db52b06f8fad86e5[m
+Author: wzm507 <15305443429@163.com>
+Date:   Sun Sep 28 11:11:14 2025 +0800
+
+    文本
+
+[33mcommit 6ae08d614536fb5b1589b64a5a4623c329435b74[m
+Author: wzm507 <15305443429@163.com>
+Date:   Sun Sep 28 10:25:10 2025 +0800
+
+    手机文本显示问题
+
+[33mcommit de50fd2a5b42d0a5b3602287dc0ffef6df4bd3b9[m
+Author: wzm507 <15305443429@163.com>
+Date:   Sun Sep 28 10:00:39 2025 +0800
+
+    修复手机端的适配
+
+[33mcommit d5e1db7b627b11471e0eee939c33ff2cd0458bf6[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: wzm507 <15305443429@163.com>
+Date:   Mon Sep 15 13:36:12 2025 +0800
+
+    首次提交：初始化项目

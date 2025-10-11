@@ -646,18 +646,21 @@ export default function ModernWebsite() {
           <source src="/bnner/bcb1.mp4" type="video/mp4" />
         </video>
 
+        {/* Black Overlay with 60% opacity */}
+        <div className="absolute inset-0 bg-black/60"></div>
+
         <div className="relative z-10 max-w-5xl mx-auto px-4 mt-[210px]">
           {/* 文本容器 */}
           <div className="text-center mb-16 transform -translate-y-[40px] md:-translate-y-[50px] lg:-translate-y-[60px]">
             <div className="mb-4 md:mb-8 lg:mb-16"></div>
 
-            <h1 className="text-[clamp(2rem,5vw,3rem)] md:text-6xl lg:text-7xl font-extrabold mb-6 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex items-center justify-center gap-2 tracking-wide">
+            <h1 className="text-[clamp(1.8rem,4vw,2.5rem)] md:text-5xl lg:text-6xl font-extrabold mb-6 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex items-center justify-center gap-1 tracking-wide">
               <span className="text-white transition-all duration-300 hover:text-purple-200">
                 中东地产数字营销与科技服务专家
               </span>
             </h1>
 
-            <p className="text-[clamp(1.25rem,2.5vw,1.75rem)] text-white font-semibold mb-8 md:mb-12 lg:mb-20 max-w-5xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide whitespace-nowrap flex items-center justify-center">
+            <p className="text-[clamp(1.25rem,2.5vw,1.75rem)] text-white font-light mb-8 md:mb-12 lg:mb-20 max-w-5xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide leading-relaxed">
               为中东房产开发商、经纪人提供 营销<span className="inline-block text-white mx-1 font-light">·</span>代币化<span className="inline-block text-white mx-1 font-light">·</span>AI 智能体等全栈解决方案
             </p>
 
@@ -784,7 +787,7 @@ export default function ModernWebsite() {
             <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               中东地产科技与营销全栈服务
             </h2>
-            <p className="text-[clamp(1rem,1.5vw,1.25rem)] text-gray-400 max-w-4xl mx-auto whitespace-nowrap">
+            <p className="text-[clamp(1rem,1.5vw,1.25rem)] text-gray-400 max-w-4xl mx-auto leading-relaxed">
               覆盖经纪人IP孵化、房产网站系统、代币化等领域，全链路赋能迪拜房产客户增长与创新
             </p>
           </div>
