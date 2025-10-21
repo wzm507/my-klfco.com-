@@ -184,7 +184,7 @@ export default function ModernWebsite() {
     },
     {
       icon: TrendingUp,
-      title: "中东地产数字营销定位",
+      title: "中东地产数字营销",
       description: "专注为中东（沙特、阿联酋迪拜）房地产开发商、经纪人及政府部门提供定制化数字营销解决方案，覆盖地产科技全链条服务",
       gradient: "from-blue-500 to-cyan-500",
     },
@@ -642,7 +642,7 @@ export default function ModernWebsite() {
           playsInline
           loop
         >
-          <source src="/bnner/bcb1.mp4" type="video/mp4" />
+          <source src="/bnner/无水印.mp4" type="video/mp4" />
         </video>
 
         {/* Black Overlay with 60% opacity */}
@@ -653,15 +653,26 @@ export default function ModernWebsite() {
           <div className="text-center mb-16 transform -translate-y-[40px] md:-translate-y-[50px] lg:-translate-y-[60px]">
             <div className="mb-4 md:mb-8 lg:mb-16"></div>
 
-            <h1 className="text-[clamp(1.8rem,4vw,2.5rem)] md:text-5xl lg:text-6xl font-extrabold mb-6 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex items-center justify-center gap-1 tracking-wide">
+            <h1 className="text-[clamp(1.8rem,4vw,2.5rem)] md:text-5xl lg:text-6xl font-extrabold mb-6 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex items-center justify-center gap-1 tracking-wide opacity-0 transition-opacity duration-1000 ease-in-out" id="hero-title">
               <span className="text-white transition-all duration-300 hover:text-purple-200">
-                中东地产数字营销与科技服务专家
-              </span>
+                  KLF STUDIO
+                </span>
             </h1>
 
-            <p className="text-[clamp(1.25rem,2.5vw,1.75rem)] text-white font-light mb-8 md:mb-12 lg:mb-20 max-w-5xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide leading-relaxed">
+            <p className="text-[clamp(1.25rem,2.5vw,1.75rem)] text-white font-light mb-8 md:mb-12 lg:mb-20 max-w-5xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide leading-relaxed opacity-0 transition-opacity duration-1000 ease-in-out" id="hero-subtitle">
               为中东房产开发商、经纪人提供 营销<span className="inline-block text-white mx-1 font-light">·</span>代币化<span className="inline-block text-white mx-1 font-light">·</span>AI 智能体等全栈解决方案
             </p>
+            
+            <script dangerouslySetInnerHTML={{ __html: `
+              // 在视频播放1.5秒后显示标题文本
+              setTimeout(() => {
+                document.getElementById('hero-title').style.opacity = '1';
+                // 稍微延迟一点显示副标题，创造层次感
+                setTimeout(() => {
+                  document.getElementById('hero-subtitle').style.opacity = '1';
+                }, 300);
+              }, 1500);
+            ` }} />
 
             {/* AI搜索框 */}
             <div className="max-w-3xl mx-auto mb-16">
@@ -795,19 +806,19 @@ export default function ModernWebsite() {
             {features.map((feature, index) => (
               <Card
                 key={index}
-                className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25"
+                className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25 relative overflow-hidden"
               >
-                <CardContent className="p-8">
-                  <div className="mb-6">
-                    <feature.icon className="w-12 h-12 text-white stroke-1" strokeWidth={1} />
-                  </div>
+                <CardContent className="p-8 relative z-10">
                   <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-purple-300 transition-colors">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed">
+                  <p className="text-gray-400 opacity-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:max-h-24 group-hover:text-gray-300 leading-relaxed">
                     {feature.description}
                   </p>
                 </CardContent>
+                <div className="absolute bottom-6 right-6 z-0">
+                  <feature.icon className="w-12 h-12 text-white stroke-1 group-hover:text-white/20 transition-colors duration-300" strokeWidth={1} />
+                </div>
               </Card>
             ))}
           </div>
