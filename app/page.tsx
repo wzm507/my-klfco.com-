@@ -812,7 +812,7 @@ export default function ModernWebsite() {
                   <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-purple-300 transition-colors">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-400 opacity-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:max-h-24 group-hover:text-gray-300 leading-relaxed">
+                  <p className="text-gray-400 transition-all duration-500 ease-in-out text-gray-300 leading-relaxed">
                     {feature.description}
                   </p>
                 </CardContent>
