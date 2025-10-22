@@ -928,7 +928,7 @@ export default function ModernWebsite() {
         <DialogContent className="bg-gray-900/80 backdrop-blur-md border border-purple-500/30 text-white p-8 rounded-lg text-center">
           <div className="flex items-center justify-center space-x-2 mb-6">
             <Phone className="h-5 w-5 text-purple-300" />
-            <p className="text-xl text-gray-200">15248027276</p>
+            <p className="text-xl text-gray-200">+86 158 1814 4194</p>
           </div>
           <p className="text-gray-400 mb-8 max-w-md mx-auto">
             如有任何咨询需求，请通过以上电话联系我们，我们将竭诚为您服务。
