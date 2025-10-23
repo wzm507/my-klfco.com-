@@ -8,6 +8,8 @@ import DynamicChart from '@/components/ui/chart-dynamic'
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { FadeInOnScroll } from "../components/FadeInOnScroll"
+import { useTranslation } from "../hooks/use-translation"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -104,6 +106,7 @@ export default function ModernWebsite() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [activeCaseIndex, setActiveCaseIndex] = useState<number | null>(null)
   const [activeNewsIndex, setActiveNewsIndex] = useState<number | null>(null)
+  const { t, toggleLanguage, language } = useTranslation()
   
   // AI搜索状态
   const [searchQuery, setSearchQuery] = useState('')
@@ -132,7 +135,7 @@ export default function ModernWebsite() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ query: searchQuery }),
+        body: JSON.stringify({ query: searchQuery, language: language }),
       });
       
       const data = await response.json();
@@ -178,38 +181,38 @@ export default function ModernWebsite() {
   const features = [
     {
       icon: Brain,
-      title: "AI智能体开发应用",
-      description: "开发定制化AI智能体（AI Agents），应用于中东地产客户咨询、楼盘推荐、交易流程自动化等场景，提升服务效率与精准度。",
+      title: t('features.aiAgents.title'),
+      description: t('features.aiAgents.description'),
       gradient: "from-purple-500 to-pink-500",
     },
     {
       icon: TrendingUp,
-      title: "中东地产数字营销",
-      description: "专注为中东（沙特、阿联酋迪拜）房地产开发商、经纪人及政府部门提供定制化数字营销解决方案，覆盖地产科技全链条服务",
+      title: t('features.digitalMarketing.title'),
+      description: t('features.digitalMarketing.description'),
       gradient: "from-blue-500 to-cyan-500",
     },
     {
       icon: Heart,
-      title: "房产经纪人IP孵化",
-      description: "打造中东房地产经纪人个人品牌IP，提供从形象定位、内容策划到社交媒体矩阵运营的一站式包装服务，提升专业影响力与客户信任度",
+      title: t('features.agentIP.title'),
+      description: t('features.agentIP.description'),
       gradient: "from-green-500 to-emerald-500",
     },
     {
       icon: Banknote,
-      title: "迪拜房产代币化技术",
-      description: "通过区块链技术实现迪拜房产资产代币化（Real Estate Tokenization），为开发商提供新型融资渠道，为投资者创造碎片化产权交易机会",
+      title: t('features.tokenization.title'),
+      description: t('features.tokenization.description'),
       gradient: "from-orange-500 to-red-500",
     },
     {
       icon: Building2,
-      title: "迪拜房产CRM系统",
-      description: "专为迪拜及中东地产商设计的智能CRM系统，整合客户管理、房源追踪、交易数据分析功能，实现精细化运营与销售转化提升",
+      title: t('features.crm.title'),
+      description: t('features.crm.description'),
       gradient: "from-indigo-500 to-purple-500",
     },
     {
       icon: GraduationCap,
-      title: "全栈技术营销方案",
-      description: "提供\"科技+营销\"全栈支持，覆盖社交媒体推广、区块链资产化、AI工具开发、数据化客户管理，助力中东地产客户降本增效",
+      title: t('features.fullStack.title'),
+      description: t('features.fullStack.description'),
       gradient: "from-pink-500 to-rose-500",
     },
   ]
@@ -268,24 +271,27 @@ export default function ModernWebsite() {
   const teamNews = [
     {
       imageUrl: '/WMDYWDT/IP.png',
-      category: '项目进展',
+      type: 'project',
+      category: t('teamNews.item1.category'),
       date: '2025-09-15',
-      title: 'IP运营新项目启动，覆盖中东市场',
-      summary: '我们的IP运营团队已启动面向中东市场的全新项目，专注于内容IP的本地化运营和商业变现，将为客户提供全方位的IP增值服务。'
+      title: t('teamNews.item1.title'),
+      summary: t('teamNews.item1.summary')
     },
     {
       imageUrl: '/WMDYWDT/web.png',
-      category: '项目进展',
+      type: 'project',
+      category: t('teamNews.item2.category'),
       date: '2025-09-10',
-      title: '响应式网站设计系统全面升级',
-      summary: '我们的网站设计团队完成了系统升级，新系统支持多终端自适应，提升了页面加载速度和用户体验，同时简化了后台管理流程。'
+      title: t('teamNews.item2.title'),
+      summary: t('teamNews.item2.summary')
     },
     {
       imageUrl: '/WMDYWDT/gzh.png',
-      category: '项目进展',
+      type: 'project',
+      category: t('teamNews.item3.category'),
       date: '2025-09-05',
-      title: '公众号运营数据分析工具正式上线',
-      summary: '我们自主研发的公众号运营数据分析工具已正式上线，该工具能提供精准的用户画像和内容效果分析，帮助客户提升公众号运营效率。'
+      title: t('teamNews.item3.title'),
+      summary: t('teamNews.item3.summary')
     },
   ]
 
@@ -321,32 +327,39 @@ export default function ModernWebsite() {
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
               <a href="#home" className="text-gray-300 hover:text-purple-400 transition-colors">
-                首页
+                {t('nav.home')}
               </a>
               <a href="#features" className="text-gray-300 hover:text-purple-400 transition-colors">
-                功能
+                {t('nav.services')}
               </a>
-              <a href="#testimonials" className="text-gray-300 hover:text-purple-400 transition-colors">
-                客户评价
-              </a>
+
               <a href="#team-news" className="text-gray-300 hover:text-blue-400 transition-colors">
-                价格
+                {t('nav.pricing')}
               </a>
               <a href="#contact" className="text-gray-300 hover:text-purple-400 transition-colors">
-                联系我们
+                {t('nav.contact')}
               </a>
               <a href="#solutions" className="text-gray-300 hover:text-purple-400 transition-colors">
-                解决方案
+                {t('nav.services')}
               </a>
               <a href="#products" className="text-gray-300 hover:text-purple-400 transition-colors">
-                产品
+                {t('nav.services')}
               </a>
               <a href="#cases" className="text-gray-300 hover:text-purple-400 transition-colors">
-                案例
+                {t('nav.projects')}
               </a>
               <a href="#news" className="text-gray-300 hover:text-purple-400 transition-colors">
-                资讯
+                {t('nav.news')}
               </a>
+              
+              {/* 语言切换按钮 */}
+              <Button 
+                onClick={toggleLanguage}
+                variant="secondary"
+                className="ml-4 bg-purple-800 hover:bg-purple-700 text-white border border-purple-600"
+              >
+                {language === 'zh' ? 'EN' : '中文'}
+              </Button>
               
             </div>
 
@@ -363,29 +376,39 @@ export default function ModernWebsite() {
             <div className="md:hidden bg-black/90 backdrop-blur-md">
               <div className="px-2 pt-2 pb-3 space-y-1">
                 <a href="#home" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
-                  首页
+                  {t('nav.home')}
                 </a>
                 <a href="#features" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
-                  功能
+                  {t('nav.services')}
                 </a>
-                <a href="#testimonials" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
-                  客户评价
-                </a>
+
                 <a href="#team-news" className="block px-3 py-2 text-gray-300 hover:text-blue-400">
-                  价格
+                  {t('nav.pricing')}
                 </a>
                 <a href="#contact" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
-                  联系我们
+                  {t('nav.contact')}
                 </a>
                 <a href="#solutions" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
-                  解决方案
+                  {t('nav.services')}
                 </a>
                 <a href="#products" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
-                  产品
+                  {t('nav.services')}
                 </a>
                 <a href="#cases" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
-                  案例
+                  {t('nav.projects')}
                 </a>
+                <a href="#news" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
+                  {t('nav.news')}
+                </a>
+                
+                {/* 移动端语言切换按钮 */}
+                <Button 
+                  onClick={toggleLanguage}
+                  variant="secondary"
+                  className="w-full mt-2 bg-purple-800 hover:bg-purple-700 text-white border border-purple-600"
+                >
+                  {language === 'zh' ? 'EN' : '中文'}
+                </Button>
                 <a href="#news" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
                   资讯
                 </a>
@@ -416,7 +439,7 @@ export default function ModernWebsite() {
                 </div>
 
                 <div className="text-left max-w-md mx-auto">
-                  <h4 className="text-lg font-semibold text-blue-300 mb-4">项目详情</h4>
+                  <h4 className="text-lg font-semibold text-blue-300 mb-4">{t('teamNews.projectDetails')}</h4>
                   <p className="text-gray-300 mb-6">
                     {teamNews[activeNewsIndex].summary}
                   </p>
@@ -425,61 +448,61 @@ export default function ModernWebsite() {
                   {activeNewsIndex === 0 && (
                     <div className="space-y-4">
                       <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">项目背景</h4>
-                        <p className="text-gray-400">随着中东市场对优质内容需求的增长，我们针对当地文化特点和用户习惯，精心策划了这套IP运营方案，旨在帮助客户实现品牌出海和商业价值最大化。</p>
+                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item1.projectBackground')}</h4>
+                        <p className="text-gray-400">{t('teamNews.item1.projectBackgroundDesc')}</p>
                       </div>
                       <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">核心服务</h4>
+                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item1.coreServices')}</h4>
                         <ul className="space-y-2">
                           <li className="flex items-start text-gray-400">
                             <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>IP内容本地化翻译与文化适配</span>
+                            <span>{t('teamNews.item1.service1')}</span>
                           </li>
                           <li className="flex items-start text-gray-400">
                             <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>社交媒体矩阵运营与粉丝增长</span>
+                            <span>{t('teamNews.item1.service2')}</span>
                           </li>
                           <li className="flex items-start text-gray-400">
                             <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>商业变现渠道搭建与优化</span>
+                            <span>{t('teamNews.item1.service3')}</span>
                           </li>
                         </ul>
                       </div>
                       
                       <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">IP运营套餐</h4>
+                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item1.packages')}</h4>
                         <div className="overflow-x-auto">
                           <table className="w-full text-left border-collapse">
                             <thead>
                               <tr className="border-b border-gray-700">
-                                <th className="py-3 px-2 text-gray-300">套餐名称</th>
-                                <th className="py-3 px-2 text-gray-300">服务内容</th>
+                                <th className="py-3 px-2 text-gray-300">{t('teamNews.item1.packageName')}</th>
+                                <th className="py-3 px-2 text-gray-300">{t('teamNews.item1.serviceContent')}</th>
                                 <th className="py-3 px-2 text-gray-300">AED</th>
                                 <th className="py-3 px-2 text-gray-300">RMB</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr className="border-b border-gray-800">
-                                <td className="py-3 px-2 text-gray-400">基础套餐</td>
-                                <td className="py-3 px-2 text-gray-400">10分钟视频，包含策划、脚本、剪辑</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item1.basicPackage')}</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item1.basicPackageContent')}</td>
                                 <td className="py-3 px-2 text-gray-400">5000</td>
                                 <td className="py-3 px-2 text-gray-400">10000</td>
                               </tr>
                               <tr className="border-b border-gray-800">
-                                <td className="py-3 px-2 text-gray-400">标准套餐</td>
-                                <td className="py-3 px-2 text-gray-400">30分钟视频，包含策划、脚本、剪辑</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item1.standardPackage')}</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item1.standardPackageContent')}</td>
                                 <td className="py-3 px-2 text-gray-400">13500</td>
                                 <td className="py-3 px-2 text-gray-400">27000</td>
                               </tr>
                               <tr className="border-b border-gray-800">
-                                <td className="py-3 px-2 text-gray-400">高级套餐</td>
-                                <td className="py-3 px-2 text-gray-400">50分钟视频，包含策划、脚本、剪辑</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item1.premiumPackage')}</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item1.premiumPackageContent')}</td>
                                 <td className="py-3 px-2 text-gray-400">20000</td>
                                 <td className="py-3 px-2 text-gray-400">40000</td>
                               </tr>
                               <tr>
-                                <td className="py-3 px-2 text-gray-400">旗舰套餐</td>
-                                <td className="py-3 px-2 text-gray-400">100分钟视频，包含策划、脚本、剪辑</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item1.flagshipPackage')}</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item1.flagshipPackageContent')}</td>
                                 <td className="py-3 px-2 text-gray-400">35000</td>
                                 <td className="py-3 px-2 text-gray-400">70000</td>
                               </tr>
@@ -497,55 +520,55 @@ export default function ModernWebsite() {
                   {activeNewsIndex === 1 && (
                     <div className="space-y-4">
                       <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">升级亮点</h4>
+                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item2.upgradeHighlights')}</h4>
                         <ul className="space-y-2">
                           <li className="flex items-start text-gray-400">
                             <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>基于最新Web标准的响应式设计框架</span>
+                            <span>{t('teamNews.item2.highlight1')}</span>
                           </li>
                           <li className="flex items-start text-gray-400">
                             <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>页面加载速度提升40%以上</span>
+                            <span>{t('teamNews.item2.highlight2')}</span>
                           </li>
                           <li className="flex items-start text-gray-400">
                             <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>全新的可视化编辑后台，无需编程知识即可更新内容</span>
+                            <span>{t('teamNews.item2.highlight3')}</span>
                           </li>
                         </ul>
                       </div>
                       <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">技术优势</h4>
-                        <p className="text-gray-400">系统采用前后端分离架构，支持多终端无缝切换，包括PC、平板和手机端，同时针对中东地区网络环境进行了特别优化，确保全球用户都能获得流畅体验。</p>
+                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item2.technicalAdvantages')}</h4>
+                        <p className="text-gray-400">{t('teamNews.item2.technicalDesc')}</p>
                       </div>
                       
                       <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">网站搭建服务价格</h4>
+                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item2.websiteServices')}</h4>
                         <div className="overflow-x-auto">
                           <table className="w-full text-left border-collapse">
                             <thead>
                               <tr className="border-b border-gray-700">
-                                <th className="py-3 px-2 text-gray-300">服务项目</th>
-                                <th className="py-3 px-2 text-gray-300">服务内容</th>
+                                <th className="py-3 px-2 text-gray-300">{t('teamNews.item2.serviceItem')}</th>
+                                <th className="py-3 px-2 text-gray-300">{t('teamNews.item1.serviceContent')}</th>
                                 <th className="py-3 px-2 text-gray-300">AED</th>
                                 <th className="py-3 px-2 text-gray-300">RMB</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr className="border-b border-gray-800">
-                                <td className="py-3 px-2 text-gray-400">个人网站建设</td>
-                                <td className="py-3 px-2 text-gray-400">网站设计+网站搭建+网站部署</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item2.personalWebsite')}</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item2.personalWebsiteContent')}</td>
                                 <td className="py-3 px-2 text-gray-400">2800</td>
                                 <td className="py-3 px-2 text-gray-400">5600</td>
                               </tr>
                               <tr className="border-b border-gray-800">
-                                <td className="py-3 px-2 text-gray-400">UI设计稿</td>
-                                <td className="py-3 px-2 text-gray-400">设计稿+icon切片</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item2.uiDesign')}</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item2.uiDesignContent')}</td>
                                 <td className="py-3 px-2 text-gray-400">150</td>
                                 <td className="py-3 px-2 text-gray-400">300</td>
                               </tr>
                               <tr>
-                                <td className="py-3 px-2 text-gray-400">移动端落地页</td>
-                                <td className="py-3 px-2 text-gray-400">网站设计+网站搭建+网站部署</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item2.mobileLanding')}</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item2.mobileLandingContent')}</td>
                                 <td className="py-3 px-2 text-gray-400">1400</td>
                                 <td className="py-3 px-2 text-gray-400">2800</td>
                               </tr>
@@ -559,55 +582,55 @@ export default function ModernWebsite() {
                   {activeNewsIndex === 2 && (
                     <div className="space-y-4">
                       <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">工具功能</h4>
+                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item3.toolFeatures')}</h4>
                         <ul className="space-y-2">
                           <li className="flex items-start text-gray-400">
                             <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>多维度数据分析报表自动生成</span>
+                            <span>{t('teamNews.item3.feature1')}</span>
                           </li>
                           <li className="flex items-start text-gray-400">
                             <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>用户画像精准分析与可视化</span>
+                            <span>{t('teamNews.item3.feature2')}</span>
                           </li>
                           <li className="flex items-start text-gray-400">
                             <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>竞品账号表现对比分析</span>
+                            <span>{t('teamNews.item3.feature3')}</span>
                           </li>
                         </ul>
                       </div>
                       <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">应用场景</h4>
-                        <p className="text-gray-400">该工具特别适合需要精细化运营公众号的企业和机构，通过数据驱动的方式优化内容策略，提高粉丝互动率和转化率，实现公众号商业价值的最大化。</p>
+                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item3.applicationScenarios')}</h4>
+                        <p className="text-gray-400">{t('teamNews.item3.scenariosDesc')}</p>
                       </div>
-                      
+                       
                       <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">公众号运营服务价格</h4>
+                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item3.wechatServicePrice')}</h4>
                         <div className="overflow-x-auto">
                           <table className="w-full text-left border-collapse">
                             <thead>
                               <tr className="border-b border-gray-700">
-                                <th className="py-3 px-2 text-gray-300">服务项目</th>
-                                <th className="py-3 px-2 text-gray-300">服务内容</th>
+                                <th className="py-3 px-2 text-gray-300">{t('teamNews.item2.serviceItem')}</th>
+                                <th className="py-3 px-2 text-gray-300">{t('teamNews.item1.serviceContent')}</th>
                                 <th className="py-3 px-2 text-gray-300">AED</th>
                                 <th className="py-3 px-2 text-gray-300">RMB</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr className="border-b border-gray-800">
-                                <td className="py-3 px-2 text-gray-400">公众号运营</td>
-                                <td className="py-3 px-2 text-gray-400">20条公众号独家内容+发布</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item3.wechatOperation')}</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item3.wechatOperationContent')}</td>
                                 <td className="py-3 px-2 text-gray-400">800</td>
                                 <td className="py-3 px-2 text-gray-400">1600</td>
                               </tr>
                               <tr className="border-b border-gray-800">
-                                <td className="py-3 px-2 text-gray-400">公众号图片设计</td>
-                                <td className="py-3 px-2 text-gray-400">文章配图设计</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item3.wechatDesign')}</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item3.wechatDesignContent')}</td>
                                 <td className="py-3 px-2 text-gray-400">150</td>
                                 <td className="py-3 px-2 text-gray-400">300</td>
                               </tr>
                               <tr>
-                                <td className="py-3 px-2 text-gray-400">公众号其他物料</td>
-                                <td className="py-3 px-2 text-gray-400">文章尾图+banner图</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item3.wechatMaterials')}</td>
+                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item3.wechatMaterialsContent')}</td>
                                 <td className="py-3 px-2 text-gray-400">150</td>
                                 <td className="py-3 px-2 text-gray-400">300</td>
                               </tr>
@@ -621,7 +644,7 @@ export default function ModernWebsite() {
 
                 <div className="flex justify-center">
                   <Button onClick={closeNewsDialog} className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md w-full max-w-xs">
-                    关闭
+                    {t('common.close')}
                   </Button>
                 </div>
               </div>
@@ -655,12 +678,12 @@ export default function ModernWebsite() {
 
             <h1 className="text-[clamp(1.8rem,4vw,2.5rem)] md:text-5xl lg:text-6xl font-extrabold mb-6 md:mb-8 lg:mb-10 leading-tight md:leading-tight lg:leading-tight flex items-center justify-center gap-1 tracking-wide opacity-0 transition-opacity duration-1000 ease-in-out" id="hero-title">
               <span className="text-white transition-all duration-300 hover:text-purple-200">
-                  KLF STUDIO
+                  {t('hero.title')}
                 </span>
             </h1>
 
             <p className="text-[clamp(1.25rem,2.5vw,1.75rem)] text-white font-light mb-8 md:mb-12 lg:mb-20 max-w-5xl mx-auto text-center drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] tracking-wide leading-relaxed opacity-0 transition-opacity duration-1000 ease-in-out" id="hero-subtitle">
-              为中东房产开发商、经纪人提供 营销<span className="inline-block text-white mx-1 font-light">·</span>代币化<span className="inline-block text-white mx-1 font-light">·</span>AI 智能体等全栈解决方案
+              {t('hero.subtitle')}
             </p>
             
             <script dangerouslySetInnerHTML={{ __html: `
@@ -680,7 +703,7 @@ export default function ModernWebsite() {
                 <div className="relative">
                   <input 
                     type="text" 
-                    placeholder="输入您想了解的问题，AI为您解答..." 
+                    placeholder={t('aiDialog.placeholder')} 
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleAISearch()}
@@ -699,7 +722,7 @@ export default function ModernWebsite() {
                     )}
                   </button>
                 </div>
-                <p className="text-xs text-gray-400 mt-3 text-center">例如："如何提升品牌出海影响力？" 或 "中东市场有哪些特点？"</p>
+                <p className="text-xs text-gray-400 mt-3 text-center">{t('aiDialog.example')}</p>
               </div>
             </div>
           </div>
@@ -711,8 +734,8 @@ export default function ModernWebsite() {
                 <h4 className="text-lg font-bold mb-4 text-center 
                   {isSearching ? 'text-purple-300' : 
                    searchError ? 'text-red-300' : 'text-green-300'}">
-                  {isSearching ? 'AI正在为您查找答案...' : 
-                   searchError ? '搜索出错' : 'AI搜索结果'}
+                  {isSearching ? t('aiDialog.searching') : 
+                   searchError ? t('aiDialog.error') : t('aiDialog.results')}
                 </h4>
                 
                 {isSearching ? (
@@ -725,7 +748,7 @@ export default function ModernWebsite() {
                   </div>
                 ) : (
                   <div className="bg-gray-900/70 p-4 rounded-lg border border-gray-800 text-gray-300 leading-relaxed whitespace-pre-line">
-                    {searchResult || '暂无相关答案，请尝试其他问题。'}
+                    {searchResult || t('aiDialog.noResult')}
                   </div>
                 )}
                 
@@ -769,11 +792,15 @@ export default function ModernWebsite() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
             {[
-              { number: "50+", label: "中东房产项目", icon: Building2 },
-              { number: "40%", label: "经纪人咨询转化率提升", icon: TrendingUp },
-              { number: "7×24", label: "中东时区技术支持", icon: Shield },
+              { number: "50+", label: t('stats.projects'), icon: Building2 },
+              { number: "40%", label: t('stats.conversionRate'), icon: TrendingUp },
+              { number: "7×24", label: t('stats.support'), icon: Shield },
             ].map((stat, index) => (
-              <div key={index} className="flex flex-col items-center group">
+              <FadeInOnScroll 
+                key={index} 
+                delay={index * 200}
+                className="flex flex-col items-center group"
+              >
                 <div className="mb-6 flex justify-center items-center">
                   <stat.icon className="w-16 h-16 text-white stroke-1" strokeWidth={1} />
                 </div>
@@ -783,7 +810,7 @@ export default function ModernWebsite() {
                 <div className="text-gray-400 group-hover:text-gray-300 transition-colors text-lg text-center">
                   {stat.label}
                 </div>
-              </div>
+              </FadeInOnScroll>
             ))}
           </div>
         </div>
@@ -793,21 +820,25 @@ export default function ModernWebsite() {
       <section id="features" className="py-24 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20 mt-[-30px]">
-            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">核心功能</Badge>
+            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">{t('features.badge')}</Badge>
             <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              中东地产科技与营销全栈服务
+              {t('features.title')}
             </h2>
             <p className="text-[clamp(1rem,1.5vw,1.25rem)] text-gray-400 max-w-4xl mx-auto leading-relaxed">
-              覆盖经纪人IP孵化、房产网站系统、代币化等领域，全链路赋能迪拜房产客户增长与创新
+              {t('features.description')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <Card
+              <FadeInOnScroll
                 key={index}
-                className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25 relative overflow-hidden"
+                delay={index * 150}
+                className="h-full"
               >
+                <Card
+                  className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25 relative overflow-hidden h-full"
+                >
                 <CardContent className="p-8 relative z-10">
                   <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-purple-300 transition-colors">
                     {feature.title}
@@ -820,6 +851,7 @@ export default function ModernWebsite() {
                   <feature.icon className="w-12 h-12 text-white stroke-1 group-hover:text-white/20 transition-colors duration-300" strokeWidth={1} />
                 </div>
               </Card>
+              </FadeInOnScroll>
             ))}
           </div>
         </div>
@@ -830,58 +862,62 @@ export default function ModernWebsite() {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-20">
-            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">解决方案</Badge>
+            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">{t('solutions.badge')}</Badge>
             <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              中东房产从业者专属解决方案
+              {t('solutions.mainTitle')}
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">为中东开发商、经纪人、机构定制从IP到科技系统的全场景增长方案</p>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">{t('solutions.description')}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
               icon: UserPlus,
-              title: "经纪人IP孵化",
-              description: "专注于培养和打造专业房产经纪人的个人品牌形象，通过系统性的内容创作、社交媒体运营和专业技能培训，提升经纪人在行业内的影响力和获客能力。",
-              benefits: ["个人品牌定位与塑造", "专业内容创作", "社交媒体运营", "获客转化系统", "客户关系管理", "行业资源对接", "专业技能培训", "数据分析优化"],
-              industries: ["房地产", "保险", "金融服务", "教育培训", "咨询服务"],
+              title: t('solutions.agentIPIncubation.title'),
+              description: t('solutions.agentIPIncubation.description'),
+              benefits: t('solutions.agentIPIncubation.benefits'),
+              industries: t('solutions.agentIPIncubation.industries'),
             },
             {
               icon: Building2,
-              title: "迪拜房产代币化",
-              description: "将迪拜房产资产数字化，通过区块链技术实现房产份额的代币化，降低投资门槛，提高流动性，为全球投资者提供便捷的迪拜房产投资渠道。",
-              benefits: ["资产数字化服务", "智能合约开发", "合规性咨询", "投资者准入系统", "流动性解决方案", "资产估值服务", "法律架构设计", "安全审计"],
-              industries: ["房地产投资", "区块链金融", "资产管理", "国际投资", "财富管理"],
+              title: t('solutions.dubaiPropertyTokenization.title'),
+              description: t('solutions.dubaiPropertyTokenization.description'),
+              benefits: t('solutions.dubaiPropertyTokenization.benefits'),
+              industries: t('solutions.dubaiPropertyTokenization.industries'),
             },
             { icon: Code,
-              title: "房产网站搭建",
-              description: "为房产开发商、中介机构和经纪人提供专业的网站设计与开发服务，打造功能完善、视觉吸引力强的房产展示与交易平台，提升品牌形象和客户转化率。",
-              benefits: ["响应式网站设计", "房产信息管理系统", "在线看房功能", "客户管理系统", "SEO优化", "智能推荐算法", "线上预约功能", "数据分析模块"],
-              industries: ["房地产开发", "房产中介", "房产经纪", "物业管理", "酒店式公寓"],
+              title: t('solutions.propertyWebsite.title'),
+              description: t('solutions.propertyWebsite.description'),
+              benefits: t('solutions.propertyWebsite.benefits'),
+              industries: t('solutions.propertyWebsite.industries'),
             },
             { icon: MessageSquare,
-              title: "公众号代运营",
-              description: "专业的微信公众号内容策划与运营服务，包括内容创作、粉丝增长、活动策划、数据分析等，帮助企业提升微信平台影响力和用户粘性。",
-              benefits: ["内容策略规划", "高质量内容创作", "粉丝增长与运营", "活动策划与执行", "数据分析与优化", "转化漏斗设计", "品牌调性统一", "危机公关处理"],
-              industries: ["房地产", "金融", "教育培训", "生活服务", "零售电商", "医疗健康"],
+              title: t('solutions.officialAccount.title'),
+              description: t('solutions.officialAccount.description'),
+              benefits: t('solutions.officialAccount.benefits'),
+              industries: t('solutions.officialAccount.industries'),
             },
             { icon: Brain,
-              title: "ai 智能体开发",
-              description: "为企业定制开发AI智能体解决方案，包括客户服务机器人、销售助手、数据分析助手等，通过人工智能技术提升运营效率和客户体验。",
-              benefits: ["自然语言处理", "个性化对话设计", "业务流程集成", "多渠道部署", "数据分析能力", "持续学习优化", "24/7客户服务", "成本效益分析"],
-              industries: ["客户服务", "金融科技", "医疗健康", "教育培训", "电子商务", "房地产销售"],
+              title: t('solutions.aiAgents.title'),
+              description: t('solutions.aiAgents.description'),
+              benefits: t('solutions.aiAgents.benefits'),
+              industries: t('solutions.aiAgents.industries'),
             },
               { icon: Users,
-                title: "加入我们",
-                description: "成为我们团队的一员，与行业顶尖人才共同创新，打造前沿的数字解决方案，开启您的职业新篇章。",
-                benefits: ["极具竞争力的薪酬待遇", "弹性工作时间", "国际化工作环境", "多元化项目经验", "专业技能培训", "快速职业发展通道", "创新的企业文化", "完善的福利体系"],
-                industries: ["技术研发", "产品设计", "市场营销", "客户服务", "运营管理", "数据分析"],
+                title: t('solutions.joinUs.title'),
+                description: t('solutions.joinUs.description'),
+                benefits: t('solutions.joinUs.benefits'),
+                industries: t('solutions.joinUs.industries'),
               },
             ].map((solution, index) => (
-              <Card
+              <FadeInOnScroll
                 key={index}
-                className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:scale-105"
+                delay={(index % 3) * 200 + Math.floor(index / 3) * 100}
+                className="h-full"
               >
+                <Card
+                  className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:scale-105 h-full"
+                >
                 <CardContent className="p-6 flex-grow flex flex-col">
                   <solution.icon className="w-12 h-12 text-white mb-4 stroke-1" strokeWidth={1} />
                   <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
@@ -889,7 +925,7 @@ export default function ModernWebsite() {
                   </h3>
                   <p className="text-gray-400 mb-4 leading-relaxed">{solution.description}</p>
                   <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-purple-300 mb-2">核心优势</h4>
+                    <h4 className="text-sm font-semibold text-purple-300 mb-2">{t('solutions.coreAdvantages')}</h4>
                     <div className="grid grid-cols-2 gap-1">
                       {solution.benefits.map((benefit, benefitIndex) => (
                         <div key={benefitIndex} className="flex items-center text-xs text-gray-400">
@@ -900,7 +936,7 @@ export default function ModernWebsite() {
                     </div>
                   </div>
                   <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-purple-300 mb-2">适用行业</h4>
+                    <h4 className="text-sm font-semibold text-purple-300 mb-2">{t('solutions.applicableIndustries')}</h4>
                     <div className="flex flex-wrap gap-1">
                       {solution.industries.map((industry, industryIndex) => (
                         <Badge key={industryIndex} variant="outline" className="text-xs border-gray-600 text-gray-300">
@@ -914,10 +950,11 @@ export default function ModernWebsite() {
                     className="w-full border-purple-500/50 text-purple-300 hover:bg-purple-500/10 bg-transparent"
                     onClick={() => setIsDialogOpen(true)}
                   >
-                    咨询方案
+                    {t('solutions.consultSolution')}
                   </Button>
                 </CardContent>
               </Card>
+              </FadeInOnScroll>
             ))}
           </div>
         </div>
@@ -931,11 +968,11 @@ export default function ModernWebsite() {
             <p className="text-xl text-gray-200">+86 158 1814 4194</p>
           </div>
           <p className="text-gray-400 mb-8 max-w-md mx-auto">
-            如有任何咨询需求，请通过以上电话联系我们，我们将竭诚为您服务。
+            {t('solutions.contactUsMessage')}
           </p>
           <div className="flex justify-center">
             <Button onClick={() => setIsDialogOpen(false)} className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-md w-full max-w-xs">
-              关闭
+              {t('common.close')}
             </Button>
           </div>
         </DialogContent>
@@ -944,7 +981,7 @@ export default function ModernWebsite() {
       {/* Case Study Detail Dialogs */}
       {activeCaseIndex !== null && (
         <Dialog open={true} onOpenChange={closeCaseDialog}>
-          <DialogContent className="bg-gray-900/80 backdrop-blur-md border border-purple-500/30 text-white p-8 rounded-lg text-center max-w-2xl">
+          <DialogContent className="bg-gray-900/80 backdrop-blur-md border border-purple-500/30 text-white p-8 rounded-lg text-center max-w-2xl max-h-[90vh] overflow-hidden">
             {
               [
                 {
@@ -977,39 +1014,24 @@ export default function ModernWebsite() {
                 },
               ][activeCaseIndex] && (
                 <div className="space-y-6">
-                  <h3 className="text-2xl font-bold text-purple-300">{[0,1,2,3][activeCaseIndex] === 0 ? "《奔跑吧》全球霸屏" : [0,1,2,3][activeCaseIndex] === 1 ? "爱奇艺全球化社媒矩阵搭建" : [0,1,2,3][activeCaseIndex] === 2 ? "GAC MOTOR全球品牌破圈" : "《天官赐福》国漫商业化出海"}</h3>
-                  <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">{[0,1,2,3][activeCaseIndex] === 0 ? "综艺IP出海" : [0,1,2,3][activeCaseIndex] === 1 ? "视频平台出海" : [0,1,2,3][activeCaseIndex] === 2 ? "汽车品牌出海" : "国漫IP出海"}</Badge>
+                  <h3 className="text-2xl font-bold text-purple-300">{t(`cases.case${activeCaseIndex + 1}.company`)}</h3>
+                  <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">{t(`cases.case${activeCaseIndex + 1}.industry`)}</Badge>
                   
-                  <div className="space-y-6 text-left max-w-md mx-auto">
+                  <div className="space-y-6 text-left max-w-md mx-auto overflow-y-auto max-h-[60vh] pr-2 scrollbar-thin scrollbar-thumb-purple-500/30 scrollbar-track-gray-800">
                     <div>
-                      <h4 className="text-lg font-semibold text-red-400 mb-2">面临挑战</h4>
-                      <p className="text-gray-300">{[0,1,2,3][activeCaseIndex] === 0 ? "作为现象级国产综艺，需突破文化差异壁垒，在海外市场建立持续影响力，同时实现商业价值转化，避免 '叫好不叫座'。" : [0,1,2,3][activeCaseIndex] === 1 ? "作为视频平台，需在海外市场突破Netflix等竞品垄断，触达多元用户群体，同时提升品牌认知度与APP下载转化。" : [0,1,2,3][activeCaseIndex] === 2 ? "作为中国汽车品牌，需在中东、东南亚等市场打破 '欧美品牌垄断' 认知，提升本地化用户辨识度与购买意愿。" : "作为国产动画IP，需在海外市场实现 '内容传播+商业变现' 双重目标，打破 '小众圈层' 局限，提升IP长尾价值。"}</p>
+                      <h4 className="text-lg font-semibold text-red-400 mb-2">{t('cases.challengeLabel')}</h4>
+                      <p className="text-gray-300 leading-relaxed">{t(`cases.case${activeCaseIndex + 1}.challenge`)}</p>
                     </div>
 
                     <div>
-                      <h4 className="text-lg font-semibold text-blue-400 mb-2">解决方案</h4>
-                      <p className="text-gray-300">{[0,1,2,3][activeCaseIndex] === 0 ? "多语种本地化布局：采用12种语言翻译配音，适配东南亚、北美等核心市场文化语境；账号矩阵联动：全网搭建多元社媒账号，覆盖YouTube、Facebook等平台，形成 '主账号+垂类账号' 协同传播模式；定制化运营策略：结合节日、地域特色设计粉丝福利活动，强化用户粘性；数据驱动优化：通过i-TuBi工具筛选高潜力内容，重点推广互动率高的片段。" : [0,1,2,3][activeCaseIndex] === 1 ? "垂直赛道细分：针对剧集、综艺、动漫等内容类型搭建49个YouTube专属频道，精准覆盖不同受众；本地化内容运营：组建18+语种团队，制作 '高光cut' '幕后花絮' 等短内容；跨平台联动：联动Facebook、TikTok发起话题挑战，引导UGC二次创作；数据工具赋能：通过V-Pulse平台监测用户偏好，定向投放APP下载广告。" : [0,1,2,3][activeCaseIndex] === 2 ? "事件营销借势：绑定世界杯热点，策划 'GAC MOTOR世界杯观赛之旅' 线上活动；本地化社媒运营：开通中东语种社媒账号，发布符合当地文化的内容；线上线下整合：在迪拜、曼谷等核心城市投放户外大屏广告；数据线索沉淀：通过BI工具分析用户互动数据，定向推送试驾预约信息。" : "内容精准分发：通过iVideoForce平台向Netflix、YouTube等渠道分发多语种版本；社媒电商联动：绑定YouTube Shopping功能，在视频中植入周边购买链接；文化元素深挖：提炼IP中的中国传统美学元素，联合海外潮牌推出联名衍生品；用户私域运营：搭建Discord粉丝社区，定期发布角色设定、创作教程。"}</p>
+                      <h4 className="text-lg font-semibold text-blue-400 mb-2">{t('cases.solutionLabel')}</h4>
+                      <p className="text-gray-300 leading-relaxed">{t(`cases.case${activeCaseIndex + 1}.solution`)}</p>
                     </div>
 
                     <div>
-                      <h4 className="text-lg font-semibold text-green-400 mb-2">实施效果</h4>
+                      <h4 className="text-lg font-semibold text-green-400 mb-2">{t('cases.resultsLabel')}</h4>
                       <div className="grid grid-cols-1 gap-2">
-                        {[0,1,2,3][activeCaseIndex] === 0 ? ["海外总曝光量达数百亿", "单集最高播放2400万+", "累积影响粉丝近千万", "品牌赞助收入增长30%+"].map((result, resultIndex) => (
-                          <div key={resultIndex} className="flex items-center text-gray-300">
-                            <TrendingUp className="h-5 w-5 text-green-400 mr-2" />
-                            {result}
-                          </div>
-                        )) : [0,1,2,3][activeCaseIndex] === 1 ? ["主账号订阅量达590万+", "总曝光10亿+", "最高单视频播放7000万+", "APP海外下载量增长150%"].map((result, resultIndex) => (
-                          <div key={resultIndex} className="flex items-center text-gray-300">
-                            <TrendingUp className="h-5 w-5 text-green-400 mr-2" />
-                            {result}
-                          </div>
-                        )) : [0,1,2,3][activeCaseIndex] === 2 ? ["中东消费者品牌辨识度上升51%", "社媒粉丝突破120万+", "年曝光7200万+", "海外销量同比增长40%"].map((result, resultIndex) => (
-                          <div key={resultIndex} className="flex items-center text-gray-300">
-                            <TrendingUp className="h-5 w-5 text-green-400 mr-2" />
-                            {result}
-                          </div>
-                        )) : ["海外总播放量破亿", "11个国家Netflix榜单进入TOP10", "衍生品电商访问量上涨226%", "客单价提升41%"].map((result, resultIndex) => (
+                        {t(`cases.case${activeCaseIndex + 1}.results`).map((result, resultIndex) => (
                           <div key={resultIndex} className="flex items-center text-gray-300">
                             <TrendingUp className="h-5 w-5 text-green-400 mr-2" />
                             {result}
@@ -1021,7 +1043,7 @@ export default function ModernWebsite() {
                   
                   <div className="flex justify-center mt-8">
                     <Button onClick={closeCaseDialog} className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-md w-full max-w-xs">
-                      关闭
+                      {t('cases.close')}
                     </Button>
                   </div>
                 </div>
@@ -1037,58 +1059,62 @@ export default function ModernWebsite() {
       <section id="cases" className="py-24 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">成功案例</Badge>
+            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">{t('cases.badge')}</Badge>
             <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              出海成功案例
+              {t('cases.title')}
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              看看我们如何帮助各行业客户实现数字化转型和业务增长
+              {t('cases.description')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                company: "《奔跑吧》全球霸屏",
-                industry: "综艺IP出海",
-                challenge: "作为现象级国产综艺，需突破文化差异壁垒，在海外市场建立持续影响力，同时实现商业价值转化，避免 '叫好不叫座'。",
-                solution: "多语种本地化布局：采用12种语言翻译配音，适配东南亚、北美等核心市场文化语境；账号矩阵联动：全网搭建多元社媒账号，覆盖YouTube、Facebook等平台，形成 '主账号+垂类账号' 协同传播模式；定制化运营策略：结合节日、地域特色设计粉丝福利活动，强化用户粘性；数据驱动优化：通过i-TuBi工具筛选高潜力内容，重点推广互动率高的片段。",
-                results: ["海外总曝光量达数百亿", "单集最高播放2400万+", "累积影响粉丝近千万", "品牌赞助收入增长30%+"],
+                company: t('cases.case1.company'),
+                industry: t('cases.case1.industry'),
+                challenge: t('cases.case1.challenge'),
+                solution: t('cases.case1.solution'),
+                results: t('cases.case1.results'),
                 image: "/Image/AL/微信图片_20250819133504.png",
                 logo: "/placeholder.svg?height=60&width=120",
               },
               {
-                company: "爱奇艺全球化社媒矩阵搭建",
-                industry: "视频平台出海",
-                challenge: "作为视频平台，需在海外市场突破Netflix等竞品垄断，触达多元用户群体，同时提升品牌认知度与APP下载转化。",
-                solution: "垂直赛道细分：针对剧集、综艺、动漫等内容类型搭建49个YouTube专属频道，精准覆盖不同受众；本地化内容运营：组建18+语种团队，制作 '高光cut' '幕后花絮' 等短内容；跨平台联动：联动Facebook、TikTok发起话题挑战，引导UGC二次创作；数据工具赋能：通过V-Pulse平台监测用户偏好，定向投放APP下载广告。",
-                results: ["主账号订阅量达590万+", "总曝光10亿+", "最高单视频播放7000万+", "APP海外下载量增长150%"],
+                company: t('cases.case2.company'),
+                industry: t('cases.case2.industry'),
+                challenge: t('cases.case2.challenge'),
+                solution: t('cases.case2.solution'),
+                results: t('cases.case2.results'),
                 image: "/Image/AL/微信图片_20250819133512.png",
                 logo: "/placeholder.svg?height=60&width=120",
               },
               {
-                company: "GAC MOTOR全球品牌破圈",
-                industry: "汽车品牌出海",
-                challenge: "作为中国汽车品牌，需在中东、东南亚等市场打破 '欧美品牌垄断' 认知，提升本地化用户辨识度与购买意愿。",
-                solution: "事件营销借势：绑定世界杯热点，策划 'GAC MOTOR世界杯观赛之旅' 线上活动；本地化社媒运营：开通中东语种社媒账号，发布符合当地文化的内容；线上线下整合：在迪拜、曼谷等核心城市投放户外大屏广告；数据线索沉淀：通过BI工具分析用户互动数据，定向推送试驾预约信息。",
-                results: ["中东消费者品牌辨识度上升51%", "社媒粉丝突破120万+", "年曝光7200万+", "海外销量同比增长40%"],
+                company: t('cases.case3.company'),
+                industry: t('cases.case3.industry'),
+                challenge: t('cases.case3.challenge'),
+                solution: t('cases.case3.solution'),
+                results: t('cases.case3.results'),
                 image: "/Image/AL/微信图片_20250819133515.png",
                 logo: "/placeholder.svg?height=60&width=120",
               },
               {
-                company: "《天官赐福》国漫商业化出海",
-                industry: "国漫IP出海",
-                challenge: "作为国产动画IP，需在海外市场实现 '内容传播+商业变现' 双重目标，打破 '小众圈层' 局限，提升IP长尾价值。",
-                solution: "内容精准分发：通过iVideoForce平台向Netflix、YouTube等渠道分发多语种版本；社媒电商联动：绑定YouTube Shopping功能，在视频中植入周边购买链接；文化元素深挖：提炼IP中的中国传统美学元素，联合海外潮牌推出联名衍生品；用户私域运营：搭建Discord粉丝社区，定期发布角色设定、创作教程。",
-                results: ["海外总播放量破亿", "11个国家Netflix榜单进入TOP10", "衍生品电商访问量上涨226%", "客单价提升41%"],
+                company: t('cases.case4.company'),
+                industry: t('cases.case4.industry'),
+                challenge: t('cases.case4.challenge'),
+                solution: t('cases.case4.solution'),
+                results: t('cases.case4.results'),
                 image: "/Image/AL/微信图片_20250819133518.png",
                 logo: "/placeholder.svg?height=60&width=120",
               },
             ].map((caseStudy, index) => (
-              <Card
+              <FadeInOnScroll
                 key={index}
-                className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:scale-105 overflow-hidden"
+                delay={index * 200}
+                className="h-full"
               >
+                <Card
+                  className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:shadow-xl hover:shadow-purple-500/25 overflow-hidden h-full"
+                >
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={caseStudy.image || "/placeholder.svg"}
@@ -1116,17 +1142,17 @@ export default function ModernWebsite() {
 
                   <div className="space-y-4">
                     <div>
-                      <h4 className="text-sm font-semibold text-red-400 mb-2">面临挑战</h4>
+                      <h4 className="text-sm font-semibold text-red-400 mb-2">{t('cases.challengeLabel')}</h4>
                       <p className="text-gray-400 text-sm">{caseStudy.challenge}</p>
                     </div>
 
                     <div>
-                      <h4 className="text-sm font-semibold text-blue-400 mb-2">解决方案</h4>
+                      <h4 className="text-sm font-semibold text-blue-400 mb-2">{t('cases.solutionLabel')}</h4>
                       <p className="text-gray-400 text-sm">{caseStudy.solution}</p>
                     </div>
 
                     <div>
-                      <h4 className="text-sm font-semibold text-green-400 mb-2">实施效果</h4>
+                      <h4 className="text-sm font-semibold text-green-400 mb-2">{t('cases.resultsLabel')}</h4>
                       <div className="grid grid-cols-2 gap-2">
                         {caseStudy.results.map((result, resultIndex) => (
                           <div key={resultIndex} className="flex items-center text-xs text-gray-300">
@@ -1142,10 +1168,11 @@ export default function ModernWebsite() {
               className="w-full mt-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
               onClick={() => openCaseDialog(index)}
             >
-              查看详情
+              {t('cases.viewDetails')}
             </Button>
                 </CardContent>
               </Card>
+              </FadeInOnScroll>
             ))}
           </div>
         </div>
@@ -1156,57 +1183,42 @@ export default function ModernWebsite() {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-20">
-            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">新闻资讯</Badge>
+            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">{t('news.newsLabel')}</Badge>
             <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              最新动态
+              {t('news.latestNews')}
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">了解行业最新趋势，获取产品更新信息和技术洞察</p>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">{t('news.description')}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {          category: "美团国际扩张",          title: "美团Keeta闪击中东！王兴加速全球布局",          excerpt: "当国内互联网企业还在为存量市场厮杀时，美团创始人王兴已将目光投向更广阔的海外版图。近期，美团旗下海外外卖平台Keeta在沙特阿拉伯展开大规模扩张，一口气新开通了11座城市的服务，包括达曼、吉达等重要城市。这一'闪击'行动标志着王兴正加速推动美团的全球化战略。",          date: "2024年",          readTime: "5分钟阅读",          image: "/Image/XW1/微信图片_20250819102012.jpg",          tags: ["美团", "海外扩张", "中东市场"],        },        {          category: "中东城市发展",          title: "沙特The Line：从科幻梦想到现实困境",          excerpt: "作为沙特'2030愿景'的旗舰项目，The Line曾被视为人类历史上最雄心勃勃的城市规划之一，计划打造零碳排放、无汽车通行、完全由人工智能管理的未来之城。然而八年过去，项目面临进度滞后、目标缩水、资金危机等多重挑战，从最初的宏大愿景逐渐在现实中褪色。",          date: "2024年",          readTime: "8分钟阅读",          image: "/Image/XW2/微信图片_20250819101830.jpg",          tags: ["沙特", "未来城市", "城市规划"],        },
-            {
-              category: "中东旅游娱乐",
-              title: "迪士尼中东首秀：阿布扎比2030年将迎来全球第七座迪士尼乐园",
-              excerpt: "2025年5月，华特迪士尼公司正式宣布，将与阿布扎比的米拉尔集团合作，在阿联酋首都阿布扎比兴建一座全新的迪士尼主题公园度假区。这座备受瞩目的主题乐园将坐落于阿布扎比的亚斯岛，预计于2030年初开门迎客。作为迪士尼在全球的第七座大型主题公园度假区、中东地区的第一座迪士尼乐园，它的诞生无疑将为中东乃至全球游客带来前所未有的梦幻体验。",
-              date: "2025年5月",
-              readTime: "15分钟阅读",
-              image: "/Image/XW3/微信图片_20250819103236.png",
-              tags: ["迪士尼", "主题乐园", "阿布扎比", "旅游发展"],
-            },
-            {
-              category: "中东科技创新",
-              title: "中东首款光子AI芯片量产，能效提升10倍的技术突破",
-              excerpt: "2025年8月，阿联酋阿布扎比的QuantLase研发中心宣布，其自主设计的中东首款工业级光子AI芯片已完成设计验证，正式进入欧洲晶圆厂的量产制造阶段。该芯片采用光而非电子来执行AI计算的核心矩阵运算，能效比当前最先进的GPU高出至少10倍。",
-              date: "2025年8月",
-              readTime: "18分钟阅读",
-              image: "/Image/XW4/微信图片_20250819104152.png",
-              tags: ["光子计算", "AI芯片", "阿联酋", "技术突破"],
-            },
-            {
-              category: "迪拜房地产市场",
-              title: "迪拜人口突破396万，如何把握黄金机会？",
-              excerpt: "据迪拜统计中心数据，截至2025年6月，迪拜常住人口已达396.6769万人，较去年同期增长了约6%。这意味着过去一年中迪拜平均每天新增近200名居民。如此惊人的增长速度，使迪拜成为全球人口增长最快的城市之一。人口的迅猛增长直接导致住房需求激增，引发迪拜房地产市场的供需失衡。",
-              date: "2025年6月",
-              readTime: "12分钟阅读",
-              image: "/Image/XW5/微信图片_20250819111920.jpg",
-              tags: ["迪拜人口", "房地产市场", "投资机会", "住房需求"],
-            },
-            {
-              category: "中东科技创新",
-              title: "沙特王子狂掷380亿美金，豪赌中国游戏，下一个《黑神话：悟空》已在路上？",
-              excerpt: "沙特阿拉伯正开启一场前所未有的游戏产业革命，投入380亿美元打造全球游戏与电竞中心，将中国市场置于战略核心位置。",
-              date: "2024年5月",
-              readTime: "10分钟阅读",
-              image: "/Image/XW6/微信图片_2025-09-09_154838_287.jpg",
-              tags: ["沙特投资", "中国游戏", "《黑神话：悟空》", "游戏产业", "AI技术"],
-            },
-            ].map((article, index) => (
-              <Card
+            { [
+              { image: "/Image/XW1/微信图片_20250819102012.jpg" },
+              { image: "/Image/XW2/微信图片_20250819101830.jpg" },
+              { image: "/Image/XW3/微信图片_20250819103236.png" },
+              { image: "/Image/XW4/微信图片_20250819104152.png" },
+              { image: "/Image/XW5/微信图片_20250819111920.jpg" },
+              { image: "/Image/XW6/微信图片_2025-09-09_154838_287.jpg" },
+            ].map((imageObj, index) => {
+              // 创建包含多语言内容的文章对象
+              const article = {
+                category: t(`news.articles.${index}.category`),
+                title: t(`news.articles.${index}.title`),
+                excerpt: t(`news.articles.${index}.excerpt`),
+                date: t(`news.articles.${index}.date`),
+                readTime: t(`news.articles.${index}.readTime`),
+                image: imageObj.image,
+                tags: t(`news.articles.${index}.tags`) || []
+              };
+              return article;
+            }).map((article: any, index: number) => (
+              <FadeInOnScroll
                 key={index}
-                className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:scale-105 overflow-hidden"
+                delay={(index % 3) * 150 + Math.floor(index / 3) * 100}
+                className="h-full"
               >
+                <Card
+                  className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:scale-105 overflow-hidden h-full"
+                >
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={article.image || "/placeholder.svg"}
@@ -1241,18 +1253,19 @@ export default function ModernWebsite() {
                       variant="outline"
                       className="w-full border-purple-500/50 text-purple-300 hover:bg-purple-500/10 bg-transparent"
                     >
-                      阅读全文
+                      {t('btn.readMore')}
                     </Button>
                   </Link>
                 </CardContent>
               </Card>
+              </FadeInOnScroll>
             ))}
           </div>
 
           <div className="text-center mt-12">
             <Link href="/news" passHref>
                 <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 px-8 py-3">
-                  查看更多资讯
+                  {t('btn.viewMore')}
                 </Button>
               </Link>
           </div>
@@ -1277,19 +1290,23 @@ export default function ModernWebsite() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-20 mt-[-30px]">
-            <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30 mb-6">业务动态</Badge>
+            <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30 mb-6">{t('teamNews.badge')}</Badge>
             <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              我们的业务动态
+              {t('teamNews.title')}
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">了解我们在IP运营、网站设计和公众号运营领域的最新进展</p>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">{t('teamNews.description')}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamNews.map((news, index) => (
-              <Card
+              <FadeInOnScroll
                 key={index}
-                className="bg-gray-900/50 border-gray-800 transition-all duration-300 hover:scale-105 hover:border-blue-500/30 flex flex-col h-full"
+                delay={(index % 3) * 150 + Math.floor(index / 3) * 100}
+                className="h-full"
               >
+                <Card
+                  className="bg-gray-900/50 border-gray-800 transition-all duration-300 hover:scale-105 hover:border-blue-500/30 flex flex-col h-full"
+                >
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={news.imageUrl}
@@ -1297,7 +1314,7 @@ export default function ModernWebsite() {
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                   />
                   <div className="absolute top-4 left-4">
-                    <Badge className={`${news.category === '项目进展' ? 'bg-green-500/20 text-green-300 border-green-500/30' : news.category === '公司公告' ? 'bg-blue-500/20 text-blue-300 border-blue-500/30' : 'bg-purple-500/20 text-purple-300 border-purple-500/30'}`}>
+                    <Badge className={`${news.type === 'project' ? 'bg-green-500/20 text-green-300 border-green-500/30' : news.type === 'announcement' ? 'bg-blue-500/20 text-blue-300 border-blue-500/30' : 'bg-purple-500/20 text-purple-300 border-purple-500/30'}`}>
                       {news.category}
                     </Badge>
                   </div>
@@ -1314,12 +1331,13 @@ export default function ModernWebsite() {
                         className="text-blue-400 hover:text-blue-300 p-0 w-full text-center"
                         onClick={() => openNewsDialog(index)}
                       >
-                        阅读更多
+                        {t('btn.readMore')}
                       </Button>
                     </div>
                   </div>
                 </CardContent>
               </Card>
+              </FadeInOnScroll>
             ))}
           </div>
         </div>
@@ -1329,12 +1347,12 @@ export default function ModernWebsite() {
       <section id="contact" className="py-24 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">联系我们</Badge>
+            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">{t('contact.badge')}</Badge>
             <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              开启您的中东房产数字化增长
+              {t('contact.title')}
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              立即咨询，定制IP孵化、网站搭建等专属方案
+              {t('contact.description')}
             </p>
           </div>
 
@@ -1342,40 +1360,40 @@ export default function ModernWebsite() {
             {/* Contact Form */}
             <Card className="bg-gray-900/50 border-gray-800">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold text-white">发送消息</CardTitle>
+                <CardTitle className="text-2xl font-bold text-white">{t('contactForm.title')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">姓名</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">{t('contactForm.name')}</label>
                     <Input
-                      placeholder="请输入您的姓名"
+                      placeholder={t('contactForm.namePlaceholder')}
                       className="bg-gray-800 border-gray-700 text-white"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     />                  </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">邮箱</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">{t('contactForm.email')}</label>
                     <Input
                       type="email"
-                      placeholder="请输入您的邮箱"
+                      placeholder={t('contactForm.emailPlaceholder')}
                       className="bg-gray-800 border-gray-700 text-white"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     />                  </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">公司名称</label>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">{t('contactForm.company')}</label>
                   <Input
-                    placeholder="请输入公司名称"
+                    placeholder={t('contactForm.companyPlaceholder')}
                     className="bg-gray-800 border-gray-700 text-white"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                   />                </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">消息内容</label>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">{t('contactForm.message')}</label>
                   <Textarea
-                    placeholder="请描述您的需求..."
+                    placeholder={t('contactForm.messagePlaceholder')}
                     rows={4}
                     className="bg-gray-800 border-gray-700 text-white"
                     value={formData.message}
@@ -1386,11 +1404,11 @@ export default function ModernWebsite() {
                   onClick={handleSubmit}
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? '发送中...' : '发送消息'}
+                  {isSubmitting ? t('contactForm.submitting') : t('contactForm.submit')}
                 </Button>
                 {statusMessage && (
                   <div className={`text-center ${status === 'success' ? 'text-green-500' : 'text-red-500'} mt-4`}>
-                    {statusMessage}
+                    {t(status === 'success' ? 'contactForm.successMessage' : 'contactForm.errorMessage')}
                   </div>
                 )}
               </CardContent>
@@ -1403,7 +1421,7 @@ export default function ModernWebsite() {
                   <Mail className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">邮箱联系</h3>
+                  <h3 className="text-xl font-semibold text-white mb-2">{t('contactInfo.email.title')}</h3>
                   <p className="text-gray-400">Robin@klfco.com</p>
                 </div>
               </div>
@@ -1413,9 +1431,9 @@ export default function ModernWebsite() {
                   <Phone className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">电话咨询</h3>
+                  <h3 className="text-xl font-semibold text-white mb-2">{t('contactInfo.phone.title')}</h3>
                   <p className="text-gray-400">+86 158-1886-1497</p>
-                  <p className="text-gray-400">工作日 9:00-18:00</p>
+                  <p className="text-gray-400">{t('contactInfo.phone.hours')}</p>
                 </div>
               </div>
 
@@ -1424,7 +1442,7 @@ export default function ModernWebsite() {
                     <MapPin className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-white mb-2">办公地址</h3>
+                    <h3 className="text-xl font-semibold text-white mb-2">{t('contactInfo.address.title')}</h3>
                     <p className="text-gray-400">广州市番禺区基盛中心大厦</p>
                   </div>
                 </div>
@@ -1452,22 +1470,22 @@ export default function ModernWebsite() {
                 </div>
               </div>
               <p className="text-gray-400 mb-6 max-w-md">
-                专注中东地产领域的数字营销与科技服务，为中东房产客户提供从IP孵化到区块链应用的全栈解决方案
+                {t('footer.description')}
               </p>
               <div className="flex space-x-4">
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button
-                      size="sm"
-                      variant="outline"
-                      className="border-gray-700 text-gray-400 hover:text-white bg-transparent"
-                    >
-                      微信
-                    </Button>
+                        size="sm"
+                        variant="outline"
+                        className="border-gray-700 text-gray-400 hover:text-white bg-transparent"
+                      >
+                        {t('footer.wechat')}
+                      </Button>
                   </DialogTrigger>
                   <DialogContent className="bg-gray-900 border-gray-800 text-white max-w-xs">
                     <DialogHeader>
-                      <DialogTitle className="text-center text-white">扫描二维码添加微信</DialogTitle>
+                      <DialogTitle className="text-center text-white">{t('footer.scanQR')}</DialogTitle>
                     </DialogHeader>
                     <div className="flex justify-center items-center p-4">
                       <img 
@@ -1482,69 +1500,69 @@ export default function ModernWebsite() {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-6 text-white">核心业务</h3>
+              <h3 className="text-lg font-semibold mb-6 text-white">{t('footer.coreBusiness')}</h3>
               <ul className="space-y-3">
                 <li>
                   <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
-                    经纪人IP孵化
-                  </a>
+                      {t('footer.agentIP')}
+                    </a>
                 </li>
                 <li>
                   <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
-                    房产CRM系统
-                  </a>
+                      {t('footer.realEstateCRM')}
+                    </a>
                 </li>
                 <li>
                   <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
-                    房产代币化服务
-                  </a>
+                      {t('footer.tokenizationService')}
+                    </a>
                 </li>
                 <li>
                   <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
-                    社媒与内容代运营
-                  </a>
+                      {t('footer.socialMedia')}
+                    </a>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-6 text-white">客户支持</h3>
+              <h3 className="text-lg font-semibold mb-6 text-white">{t('footer.customerSupport')}</h3>
               <ul className="space-y-3">
                 <li>
                   <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
-                    帮助中心
-                  </a>
+                      {t('footer.helpCenter')}
+                    </a>
                 </li>
                 <li>
                   <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
-                    案例库
-                  </a>
+                      {t('footer.caseLibrary')}
+                    </a>
                 </li>
                 <li>
                   <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
-                    商业合作
-                  </a>
+                      {t('footer.businessCooperation')}
+                    </a>
                 </li>
                 <li>
                   <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
-                    联系我们
-                  </a>
+                      {t('nav.contact')}
+                    </a>
                 </li>
               </ul>
             </div>
           </div>
 
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">© KLF STUDIO. 保留所有权利。</p>
+            <p className="text-gray-400 text-sm">{t('footer.copyright')}</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-400 hover:text-purple-400 text-sm transition-colors">
-                隐私政策
+                {t('footer.privacyPolicy')}
               </a>
               <a href="#" className="text-gray-400 hover:text-purple-400 text-sm transition-colors">
-                服务条款
+                {t('footer.termsOfService')}
               </a>
               <a href="#" className="text-gray-400 hover:text-purple-400 text-sm transition-colors">
-                Cookie 政策
+                {t('footer.cookiePolicy')}
               </a>
             </div>
           </div>

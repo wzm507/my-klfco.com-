@@ -5,7 +5,14 @@ import {
   ThemeProvider as NextThemesProvider,
   type ThemeProviderProps,
 } from 'next-themes'
+import { TranslationProvider } from "../hooks/use-translation"
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+  return (
+    <NextThemesProvider {...props}>
+      <TranslationProvider>
+        {children}
+      </TranslationProvider>
+    </NextThemesProvider>
+  )
 }

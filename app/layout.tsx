@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import './globals.css'
+import { TranslationProvider } from '../hooks/use-translation'
 
 export const metadata: Metadata = {
   title: 'KLF 中东数字营销专家',
@@ -18,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="zh">
       <head>
         <style>{`
 html {
@@ -28,7 +29,11 @@ html {
 }
         `}</style>
       </head>
-      <body>{children}</body>
+      <body>
+        <TranslationProvider>
+          {children}
+        </TranslationProvider>
+      </body>
     </html>
   )
 }
