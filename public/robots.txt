@@ -1,0 +1,10 @@
+# Allow all bots to crawl the site
+User-agent: *
+Allow: /
+
+# Disallow access to admin or private directories if needed
+# Disallow: /admin/
+# Disallow: /private/
+
+# Point to the sitemap
+Sitemap: https://my-klfco.com/sitemap.xml
