@@ -33,7 +33,7 @@ html {
       <body>
         <TranslationProvider>
           {children}
-          <TorchLight size={220} intensity={0.55} color="rgba(255, 255, 255, 0.6)" />
+          <TorchLight size={50} />
         </TranslationProvider>
       </body>
     </html>

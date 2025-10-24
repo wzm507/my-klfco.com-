@@ -52,25 +52,33 @@ export default function TorchLight({
     };
   }, [size]);
 
-  // 创建更自然的径向渐变效果，多层渐变增强"点亮"感
+  // 创建更美观的光斑效果，优化渐变分布和阴影
   const gradientStyle = {
     background: `radial-gradient(
       circle at center,
-      rgba(255, 255, 255, 0.8) 0%,
-      ${color} 40%,
-      rgba(255, 255, 255, 0.1) 70%,
-      transparent ${intensity * 100}%
+      rgba(255, 255, 255, 0.95) 0%,  // 稍微降低中心透明度
+      rgba(255, 255, 255, 0.7) 20%,   // 调整渐变节点位置
+      rgba(255, 255, 255, 0.4) 45%,   // 使过渡更自然
+      rgba(255, 255, 255, 0.15) 75%,  // 延长半透明区域
+      transparent 100%
     )`,
     width: `${size}px`,
     height: `${size}px`,
-    boxShadow: `0 0 ${size/2}px ${size/4}px rgba(255, 255, 255, 0.15)`,
+    left: '0px',  // 设置初始位置
+    top: '0px',   // 设置初始位置
+    borderRadius: '50%',  // 确保圆形
+    // 优化阴影效果，使光晕更柔和
+    boxShadow: `
+      0 0 20px 10px rgba(255, 255, 255, 0.2),
+      0 0 40px 20px rgba(255, 255, 255, 0.1)
+    `,
   };
 
   return (
     <div
       ref={torchRef}
       className={cn(
-        'fixed pointer-events-none mix-blend-lighten z-50 opacity-90 transition-transform duration-75 ease-out',
+        'fixed pointer-events-none z-50 opacity-100 transition-all duration-150 ease-out',
         className
       )}
       style={gradientStyle}
