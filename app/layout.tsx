@@ -3,6 +3,7 @@ import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 import { TranslationProvider } from '../hooks/use-translation'
+import TorchLight from '../components/TorchLight'
 
 export const metadata: Metadata = {
   title: 'KLF 中东数字营销专家',
@@ -32,6 +33,7 @@ html {
       <body>
         <TranslationProvider>
           {children}
+          <TorchLight size={180} intensity={0.7} color="rgba(255, 255, 255, 0.25)" />
         </TranslationProvider>
       </body>
     </html>
