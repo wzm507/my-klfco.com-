@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
@@ -20,8 +20,8 @@ const translations: Translations = {
     home: { zh: '首页', en: 'Home' },
     about: { zh: '关于我们', en: 'About Us' },
     services: { zh: '服务', en: 'Services' },
-    projects: { zh: '中东房产项目', en: 'Middle East Real Estate Projects' },
-    news: { zh: '新闻', en: 'News' },
+    projects: { zh: '案例', en: 'Cases' },
+    news: { zh: '公司动态', en: 'News' },
     contact: { zh: '联系我们', en: 'Contact' },
     pricing: { zh: '价格', en: 'Pricing' },
     testimonials: { zh: '客户见证', en: 'Testimonials' }
@@ -48,7 +48,7 @@ const translations: Translations = {
   // AI对话框
   aiDialog: {
     placeholder: { zh: '输入您想了解的问题，AI为您解答...', en: 'Enter your question, AI will answer for you...' },
-    example: { zh: '例如: "如何提升迪拜影响力?" 或 "中东市场有何特点?"', en: 'Example: "How to increase Dubai influence?" or "What are the characteristics of Middle East market?"' },
+    example: { zh: '例如: "如何打通海外房地产？" 或 "中东地产有什么优势?"', en: 'Example: "How to connect overseas real estate?" or "What are the advantages of Middle East real estate?"' },
     searching: { zh: 'AI正在为您查找答案...', en: 'AI is searching for answers for you...' },
     error: { zh: '搜索出错', en: 'Search Error' },
     noResult: { zh: '暂无相关答案，请尝试其他问题。', en: 'No relevant answers found, please try other questions.' },
@@ -329,8 +329,8 @@ const translations: Translations = {
             en: 'Data Tools'
           },
           title: {
-            zh: '中东地区账号运营数据分析工具正式上线',
-            en: 'Middle East Account Operation Data Analysis Tool Officially Launched'
+            zh: '中东公众号运营以及数据分析服务',
+            en: 'Middle East Official Account Operation and Data Analysis Service'
           },
           summary: {
             zh: '全新开发的数据分析工具，帮助客户深入了解中东地区账号运营状况',
@@ -425,7 +425,8 @@ const translations: Translations = {
         hours: { zh: '工作日 9:00-18:00', en: 'Weekdays 9:00-18:00' }
       },
       address: {
-        title: { zh: '办公地址', en: 'Office Address' }
+        title: { zh: '办公地址', en: 'Office Address' },
+        location: { zh: '广州市番禺区基盛中心大厦八楼A12', en: '8th Floor, A12, Jisheng Center Building, Panyu District, Guangzhou' }
       }
     },
   
@@ -463,8 +464,10 @@ const translations: Translations = {
     
   // 新闻部分
     news: {
-      badge: { zh: '新闻资讯', en: 'News' },
-      title: { zh: '全球中东地产洞察', en: 'Global Middle East Real Estate Insights' },
+      badge: { zh: '公司动态', en: 'Company News' },
+      title: { zh: '公司最新动态', en: 'Company Latest Updates' },
+      latestNews: { zh: '最新动态', en: 'Latest News' },
+      newsLabel: { zh: '新闻', en: 'News' },
       description: { zh: '了解行业最新趋势，获取产品更新信息和技术洞察', en: 'Stay updated with industry trends, product updates, and technical insights' },
       readMore: { zh: '阅读更多', en: 'Read More' },
       backToHome: { zh: '返回首页', en: 'Back to Home' },

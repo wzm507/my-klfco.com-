@@ -339,12 +339,6 @@ export default function ModernWebsite() {
               <a href="#contact" className="text-gray-300 hover:text-purple-400 transition-colors">
                 {t('nav.contact')}
               </a>
-              <a href="#solutions" className="text-gray-300 hover:text-purple-400 transition-colors">
-                {t('nav.services')}
-              </a>
-              <a href="#products" className="text-gray-300 hover:text-purple-400 transition-colors">
-                {t('nav.services')}
-              </a>
               <a href="#cases" className="text-gray-300 hover:text-purple-400 transition-colors">
                 {t('nav.projects')}
               </a>
@@ -376,28 +370,22 @@ export default function ModernWebsite() {
             <div className="md:hidden bg-black/90 backdrop-blur-md">
               <div className="px-2 pt-2 pb-3 space-y-1">
                 <a href="#home" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
-                  {t('nav.home')}
-                </a>
-                <a href="#features" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
-                  {t('nav.services')}
-                </a>
+                {t('nav.home')}
+              </a>
+              <a href="#features" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
+                {t('nav.services')}
+              </a>
 
-                <a href="#team-news" className="block px-3 py-2 text-gray-300 hover:text-blue-400">
-                  {t('nav.pricing')}
-                </a>
-                <a href="#contact" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
-                  {t('nav.contact')}
-                </a>
-                <a href="#solutions" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
-                  {t('nav.services')}
-                </a>
-                <a href="#products" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
-                  {t('nav.services')}
-                </a>
-                <a href="#cases" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
-                  {t('nav.projects')}
-                </a>
-                <a href="#news" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
+              <a href="#team-news" className="block px-3 py-2 text-gray-300 hover:text-blue-400">
+                {t('nav.pricing')}
+              </a>
+              <a href="#contact" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
+                {t('nav.contact')}
+              </a>
+              <a href="#cases" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
+                {t('nav.projects')}
+              </a>
+              <a href="#news" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
                   {t('nav.news')}
                 </a>
                 
@@ -1443,7 +1431,7 @@ export default function ModernWebsite() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-white mb-2">{t('contactInfo.address.title')}</h3>
-                    <p className="text-gray-400">广州市番禺区基盛中心大厦</p>
+                    <p className="text-gray-400">{t('contactInfo.address.location')}</p>
                   </div>
                 </div>
 
