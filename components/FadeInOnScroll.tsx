@@ -23,7 +23,7 @@ export const FadeInOnScroll = forwardRef<
     className = '',
     children,
     delay = 0,
-    duration = 1000,
+    duration = 600,
     offset = 40,
     once = true,
     ...props

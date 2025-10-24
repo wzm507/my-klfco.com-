@@ -422,7 +422,7 @@ export default function ModernWebsite() {
         <Dialog open={true} onOpenChange={closeNewsDialog}>
           <DialogContent className="bg-gray-900/80 backdrop-blur-md border border-blue-500/30 text-white p-8 rounded-lg text-center max-w-2xl max-h-[90vh] overflow-y-auto">
             {teamNews[activeNewsIndex] && (
-              <div className="space-y-6">
+              <div className="space-y-6 flex-grow flex flex-col pb-6">
                 <div className="flex flex-col items-center">
                   <img
                     src={teamNews[activeNewsIndex].imageUrl}
@@ -981,7 +981,7 @@ export default function ModernWebsite() {
       {/* Case Study Detail Dialogs */}
       {activeCaseIndex !== null && (
         <Dialog open={true} onOpenChange={closeCaseDialog}>
-          <DialogContent className="bg-gray-900/80 backdrop-blur-md border border-purple-500/30 text-white p-8 rounded-lg text-center max-w-2xl max-h-[90vh] overflow-hidden">
+          <DialogContent className="bg-gray-900/80 backdrop-blur-md border border-purple-500/30 text-white p-8 rounded-lg text-center max-w-2xl max-h-[90vh] overflow-hidden flex flex-col justify-between" style={{ minHeight: '60vh' }}>
             {
               [
                 {
@@ -1017,7 +1017,7 @@ export default function ModernWebsite() {
                   <h3 className="text-2xl font-bold text-purple-300">{t(`cases.case${activeCaseIndex + 1}.company`)}</h3>
                   <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">{t(`cases.case${activeCaseIndex + 1}.industry`)}</Badge>
                   
-                  <div className="space-y-6 text-left max-w-md mx-auto overflow-y-auto max-h-[60vh] pr-2 scrollbar-thin scrollbar-thumb-purple-500/30 scrollbar-track-gray-800">
+                  <div className="space-y-6 text-left max-w-md mx-auto overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-purple-500/30 scrollbar-track-gray-800">
                     <div>
                       <h4 className="text-lg font-semibold text-red-400 mb-2">{t('cases.challengeLabel')}</h4>
                       <p className="text-gray-300 leading-relaxed">{t(`cases.case${activeCaseIndex + 1}.challenge`)}</p>
@@ -1041,7 +1041,7 @@ export default function ModernWebsite() {
                     </div>
                   </div>
                   
-                  <div className="flex justify-center mt-8">
+                  <div className="flex justify-center mt-12 pb-8">
                     <Button onClick={closeCaseDialog} className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-md w-full max-w-xs">
                       {t('cases.close')}
                     </Button>

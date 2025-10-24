@@ -14,8 +14,8 @@ interface UseIntersectionObserverProps {
 export const useIntersectionObserver = ({
   options = {
     root: null,
-    rootMargin: '0px',
-    threshold: 0.1, // 当元素10%进入视口时触发
+    rootMargin: '-50px 0px -50px 0px', // 扩大有效观察区域
+    threshold: 0.05, // 当元素5%进入视口时触发
   },
   once = true,
 }: UseIntersectionObserverProps = {}) => {
