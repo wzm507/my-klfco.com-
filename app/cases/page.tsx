@@ -1,4 +1,5 @@
 "use client"
+// 修复编码问题
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -24,10 +25,19 @@ export default function CasesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900/50 text-white">
-      {/* Header */}
-      <div className="py-12 md:py-24 bg-gray-900/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div className="min-h-screen bg-gradient-to-b from-[#030014] to-[#0a041d] text-white py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Home button */}
+        <div className="absolute top-4 left-4 sm:left-8 md:top-6 md:left-12">
+          <Link href="/" passHref>
+            <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 flex items-center gap-2 rounded-full">
+              <Home className="h-4 w-4" />
+              Home
+            </Button>
+          </Link>
+        </div>
+        
+        <div className="text-center mb-16">
           <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">{t('cases.badge')}</Badge>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
             {t('cases.title')}
@@ -35,69 +45,56 @@ export default function CasesPage() {
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             {t('cases.description')}
           </p>
-          
-          {/* Home button */}
-          <div className="absolute top-4 left-4 sm:left-8 md:top-6 md:left-12">
-            <Link href="/" passHref>
-              <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 flex items-center gap-2 rounded-full">
-                <Home className="h-4 w-4" />
-                Home
-              </Button>
-            </Link>
-          </div>
         </div>
-      </div>
-      
-      {/* Case Studies Section */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                company: t('cases.case1.company'),
-                industry: t('cases.case1.industry'),
-                challenge: t('cases.case1.challenge'),
-                solution: t('cases.case1.solution'),
-                results: t('cases.case1.results'),
-                image: "/Image/AL/微信图片_20250819133504.png",
-                logo: "/placeholder.svg?height=60&width=120",
-              },
-              {
-                company: t('cases.case2.company'),
-                industry: t('cases.case2.industry'),
-                challenge: t('cases.case2.challenge'),
-                solution: t('cases.case2.solution'),
-                results: t('cases.case2.results'),
-                image: "/Image/AL/微信图片_20250819133512.png",
-                logo: "/placeholder.svg?height=60&width=120",
-              },
-              {
-                company: t('cases.case3.company'),
-                industry: t('cases.case3.industry'),
-                challenge: t('cases.case3.challenge'),
-                solution: t('cases.case3.solution'),
-                results: t('cases.case3.results'),
-                image: "/Image/AL/微信图片_20250819133515.png",
-                logo: "/placeholder.svg?height=60&width=120",
-              },
-              {
-                company: t('cases.case4.company'),
-                industry: t('cases.case4.industry'),
-                challenge: t('cases.case4.challenge'),
-                solution: t('cases.case4.solution'),
-                results: t('cases.case4.results'),
-                image: "/Image/AL/微信图片_20250819133518.png",
-                logo: "/placeholder.svg?height=60&width=120",
-              },
-            ].map((caseStudy, index) => (
-              <FadeInOnScroll
-                key={index}
-                delay={index * 200}
-                className="h-full"
+        
+        {/* Case Studies Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {[
+            {
+              company: t('cases.case1.company'),
+              industry: t('cases.case1.industry'),
+              challenge: t('cases.case1.challenge'),
+              solution: t('cases.case1.solution'),
+              results: t('cases.case1.results'),
+              image: "/Image/AL/微信图片_20250819133504.png",
+              logo: "/placeholder.svg?height=60&width=120",
+            },
+            {
+              company: t('cases.case2.company'),
+              industry: t('cases.case2.industry'),
+              challenge: t('cases.case2.challenge'),
+              solution: t('cases.case2.solution'),
+              results: t('cases.case2.results'),
+              image: "/Image/AL/微信图片_20250819133512.png",
+              logo: "/placeholder.svg?height=60&width=120",
+            },
+            {
+              company: t('cases.case3.company'),
+              industry: t('cases.case3.industry'),
+              challenge: t('cases.case3.challenge'),
+              solution: t('cases.case3.solution'),
+              results: t('cases.case3.results'),
+              image: "/Image/AL/微信图片_20250819133515.png",
+              logo: "/placeholder.svg?height=60&width=120",
+            },
+            {
+              company: t('cases.case4.company'),
+              industry: t('cases.case4.industry'),
+              challenge: t('cases.case4.challenge'),
+              solution: t('cases.case4.solution'),
+              results: t('cases.case4.results'),
+              image: "/Image/AL/微信图片_20250819133518.png",
+              logo: "/placeholder.svg?height=60&width=120",
+            },
+          ].map((caseStudy, index) => (
+            <FadeInOnScroll
+              key={index}
+              delay={index * 200}
+              className="h-full"
+            >
+              <Card
+                className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:shadow-xl hover:shadow-purple-500/25 overflow-hidden h-full"
               >
-                <Card
-                  className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:shadow-xl hover:shadow-purple-500/25 overflow-hidden h-full"
-                >
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={caseStudy.image || "/placeholder.svg"}
@@ -155,11 +152,10 @@ export default function CasesPage() {
                   </Button>
                 </CardContent>
               </Card>
-              </FadeInOnScroll>
-            ))}
-          </div>
+            </FadeInOnScroll>
+          ))}
         </div>
-      </section>
+      </div>
 
       {/* Case Study Detail Dialogs */}
       {activeCaseIndex !== null && (
