@@ -77,14 +77,8 @@ export default function MiddleEastGrowthCTA() {
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-20">
-          <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">{t('contact.badge') || '联系我们'}</Badge>
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-            {t('contact.title') || '开启您的中东房产数字化增长'}
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            {t('contact.description') || '立即咨询，定制IP孵化、网站搭建等专属方案'}
-          </p>
+        <div className="mb-20">
+          {/* 删除指定的三段文本 */}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
