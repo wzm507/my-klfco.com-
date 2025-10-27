@@ -51,7 +51,7 @@ export default function PricingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-gray-900/50 text-white">
       {/* Home Button */}
       <div className="absolute top-4 left-4 sm:left-8 md:top-6 md:left-12 z-50">
         <Link href="/" passHref>

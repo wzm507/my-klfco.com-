@@ -40,7 +40,7 @@ export default function NewsPage() {
   ]
   
   return (
-    <div className="min-h-screen bg-gray-900 text-white py-16">
+    <div className="min-h-screen bg-gray-900/50 text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Home button */}
         <div className="absolute top-4 left-4 sm:left-8 md:top-6 md:left-12">
