@@ -40,7 +40,7 @@ export default function NewsPage() {
   ]
   
   return (
-    <div className="min-h-screen bg-gray-900/50 text-white py-16">
+    <div className="min-h-screen bg-gradient-to-b from-[#030014] to-[#0a041d] text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Home button */}
         <div className="absolute top-4 left-4 sm:left-8 md:top-6 md:left-12">
@@ -122,13 +122,7 @@ export default function NewsPage() {
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <Link href="/" passHref>
-                  <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 px-8 py-3">
-                    {t('news.backToHome')}
-                  </Button>
-                </Link>
-        </div>
+        
       </div>
       
       <MiddleEastGrowthCTA />
