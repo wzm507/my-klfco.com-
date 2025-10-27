@@ -4,7 +4,8 @@ import Image from 'next/image'
 import { Button } from '../../components/ui/button'
 import { Card, CardContent } from '../../components/ui/card'
 import { Badge } from '../../components/ui/badge'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Home } from 'lucide-react'
+import MiddleEastGrowthCTA from '../../components/MiddleEastGrowthCTA'
 import { useTranslation } from '../../hooks/use-translation'
 
 export default function NewsPage() {
@@ -41,6 +42,16 @@ export default function NewsPage() {
   return (
     <div className="min-h-screen bg-gray-900 text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Home button */}
+        <div className="absolute top-4 left-4 sm:left-8 md:top-6 md:left-12">
+          <Link href="/" passHref>
+            <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 flex items-center gap-2 rounded-full">
+              <Home className="h-4 w-4" />
+              Home
+            </Button>
+          </Link>
+        </div>
+        
         <div className="text-center mb-16">
           <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">{t('news.badge')}</Badge>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
@@ -60,7 +71,7 @@ export default function NewsPage() {
               <div className="relative h-48 overflow-hidden">
                 <Image
                   src={article.image || '/placeholder.jpg'}
-                  alt={article.title}
+                  alt={t(`news.articles.${article.id - 1}.title`)}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                   sizes="100vw"
@@ -119,6 +130,8 @@ export default function NewsPage() {
                 </Link>
         </div>
       </div>
+      
+      <MiddleEastGrowthCTA />
     </div>
   )
 }

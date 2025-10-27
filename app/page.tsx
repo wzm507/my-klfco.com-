@@ -104,8 +104,6 @@ export default function ModernWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrollY, setScrollY] = useState(0)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [activeCaseIndex, setActiveCaseIndex] = useState<number | null>(null)
-  const [activeNewsIndex, setActiveNewsIndex] = useState<number | null>(null)
   const { t, toggleLanguage, language } = useTranslation()
   
   // AI搜索状态
@@ -156,21 +154,7 @@ export default function ModernWebsite() {
     }
   }
 
-  const openCaseDialog = (index: number) => {
-    setActiveCaseIndex(index)
-  }
 
-  const closeCaseDialog = () => {
-    setActiveCaseIndex(null)
-  }
-
-  const openNewsDialog = (index: number) => {
-    setActiveNewsIndex(index)
-  }
-
-  const closeNewsDialog = () => {
-    setActiveNewsIndex(null)
-  }
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
@@ -268,32 +252,6 @@ export default function ModernWebsite() {
     },
   ]
 
-  const teamNews = [
-    {
-      imageUrl: '/WMDYWDT/IP.png',
-      type: 'project',
-      category: t('teamNews.item1.category'),
-      date: '2025-09-15',
-      title: t('teamNews.item1.title'),
-      summary: t('teamNews.item1.summary')
-    },
-    {
-      imageUrl: '/WMDYWDT/web.png',
-      type: 'project',
-      category: t('teamNews.item2.category'),
-      date: '2025-09-10',
-      title: t('teamNews.item2.title'),
-      summary: t('teamNews.item2.summary')
-    },
-    {
-      imageUrl: '/WMDYWDT/gzh.png',
-      type: 'project',
-      category: t('teamNews.item3.category'),
-      date: '2025-09-05',
-      title: t('teamNews.item3.title'),
-      summary: t('teamNews.item3.summary')
-    },
-  ]
 
   // 在 ModernWebsite 组件内部添加滚动函数
   const scrollToFeatures = () => {
@@ -333,18 +291,18 @@ export default function ModernWebsite() {
                 {t('nav.services')}
               </a>
 
-              <a href="#team-news" className="text-gray-300 hover:text-blue-400 transition-colors">
+              <Link href="/pricing" className="text-gray-300 hover:text-blue-400 transition-colors cursor-pointer">
                 {t('nav.pricing')}
-              </a>
+              </Link>
               <a href="#contact" className="text-gray-300 hover:text-purple-400 transition-colors">
                 {t('nav.contact')}
               </a>
-              <a href="#cases" className="text-gray-300 hover:text-purple-400 transition-colors">
+              <Link href="/cases" className="text-gray-300 hover:text-purple-400 transition-colors">
                 {t('nav.projects')}
-              </a>
-              <a href="#news" className="text-gray-300 hover:text-purple-400 transition-colors">
+              </Link>
+              <Link href="/news" className="text-gray-300 hover:text-purple-400 transition-colors">
                 {t('nav.news')}
-              </a>
+              </Link>
               
               {/* 语言切换按钮 */}
               <Button 
@@ -376,18 +334,18 @@ export default function ModernWebsite() {
                 {t('nav.services')}
               </a>
 
-              <a href="#team-news" className="block px-3 py-2 text-gray-300 hover:text-blue-400">
+              <Link href="/pricing" className="block px-3 py-2 text-gray-300 hover:text-blue-400 cursor-pointer">
                 {t('nav.pricing')}
-              </a>
+              </Link>
               <a href="#contact" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
                 {t('nav.contact')}
               </a>
-              <a href="#cases" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
+              <Link href="/cases" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
                 {t('nav.projects')}
-              </a>
-              <a href="#news" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
-                  {t('nav.news')}
-                </a>
+              </Link>
+              <Link href="/news" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
+                  资讯
+                </Link>
                 
                 {/* 移动端语言切换按钮 */}
                 <Button 
@@ -397,249 +355,12 @@ export default function ModernWebsite() {
                 >
                   {language === 'zh' ? 'EN' : '中文'}
                 </Button>
-                <a href="#news" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
-                  资讯
-                </a>
                 
               </div>
             </div>
           )}
 
-      {/* Business News Detail Dialog */}
-      {activeNewsIndex !== null && (
-        <Dialog open={true} onOpenChange={closeNewsDialog}>
-          <DialogContent className="bg-gray-900/80 backdrop-blur-md border border-blue-500/30 text-white p-8 rounded-lg text-center max-w-2xl max-h-[90vh] overflow-y-auto">
-            {teamNews[activeNewsIndex] && (
-              <div className="space-y-6 flex-grow flex flex-col pb-6">
-                <div className="flex flex-col items-center">
-                  <img
-                    src={teamNews[activeNewsIndex].imageUrl}
-                    alt={teamNews[activeNewsIndex].title}
-                    className="w-32 h-32 object-contain mb-6"
-                  />
-                  <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30 mb-4">
-                    {teamNews[activeNewsIndex].category}
-                  </Badge>
-                  <p className="text-gray-400 text-sm mb-2">{teamNews[activeNewsIndex].date}</p>
-                  <h3 className="text-2xl font-bold text-white mb-6">
-                    {teamNews[activeNewsIndex].title}
-                  </h3>
-                </div>
-
-                <div className="text-left max-w-md mx-auto">
-                  <h4 className="text-lg font-semibold text-blue-300 mb-4">{t('teamNews.projectDetails')}</h4>
-                  <p className="text-gray-300 mb-6">
-                    {teamNews[activeNewsIndex].summary}
-                  </p>
-                  
-                  {/* 根据不同的业务动态显示更详细的信息 */}
-                  {activeNewsIndex === 0 && (
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item1.projectBackground')}</h4>
-                        <p className="text-gray-400">{t('teamNews.item1.projectBackgroundDesc')}</p>
-                      </div>
-                      <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item1.coreServices')}</h4>
-                        <ul className="space-y-2">
-                          <li className="flex items-start text-gray-400">
-                            <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>{t('teamNews.item1.service1')}</span>
-                          </li>
-                          <li className="flex items-start text-gray-400">
-                            <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>{t('teamNews.item1.service2')}</span>
-                          </li>
-                          <li className="flex items-start text-gray-400">
-                            <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>{t('teamNews.item1.service3')}</span>
-                          </li>
-                        </ul>
-                      </div>
-                      
-                      <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item1.packages')}</h4>
-                        <div className="overflow-x-auto">
-                          <table className="w-full text-left border-collapse">
-                            <thead>
-                              <tr className="border-b border-gray-700">
-                                <th className="py-3 px-2 text-gray-300">{t('teamNews.item1.packageName')}</th>
-                                <th className="py-3 px-2 text-gray-300">{t('teamNews.item1.serviceContent')}</th>
-                                <th className="py-3 px-2 text-gray-300">AED</th>
-                                <th className="py-3 px-2 text-gray-300">RMB</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr className="border-b border-gray-800">
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item1.basicPackage')}</td>
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item1.basicPackageContent')}</td>
-                                <td className="py-3 px-2 text-gray-400">5000</td>
-                                <td className="py-3 px-2 text-gray-400">10000</td>
-                              </tr>
-                              <tr className="border-b border-gray-800">
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item1.standardPackage')}</td>
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item1.standardPackageContent')}</td>
-                                <td className="py-3 px-2 text-gray-400">13500</td>
-                                <td className="py-3 px-2 text-gray-400">27000</td>
-                              </tr>
-                              <tr className="border-b border-gray-800">
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item1.premiumPackage')}</td>
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item1.premiumPackageContent')}</td>
-                                <td className="py-3 px-2 text-gray-400">20000</td>
-                                <td className="py-3 px-2 text-gray-400">40000</td>
-                              </tr>
-                              <tr>
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item1.flagshipPackage')}</td>
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item1.flagshipPackageContent')}</td>
-                                <td className="py-3 px-2 text-gray-400">35000</td>
-                                <td className="py-3 px-2 text-gray-400">70000</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                       
-
-                      
-
-                    </div>
-                  )}
-                  
-                  {activeNewsIndex === 1 && (
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item2.upgradeHighlights')}</h4>
-                        <ul className="space-y-2">
-                          <li className="flex items-start text-gray-400">
-                            <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>{t('teamNews.item2.highlight1')}</span>
-                          </li>
-                          <li className="flex items-start text-gray-400">
-                            <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>{t('teamNews.item2.highlight2')}</span>
-                          </li>
-                          <li className="flex items-start text-gray-400">
-                            <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>{t('teamNews.item2.highlight3')}</span>
-                          </li>
-                        </ul>
-                      </div>
-                      <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item2.technicalAdvantages')}</h4>
-                        <p className="text-gray-400">{t('teamNews.item2.technicalDesc')}</p>
-                      </div>
-                      
-                      <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item2.websiteServices')}</h4>
-                        <div className="overflow-x-auto">
-                          <table className="w-full text-left border-collapse">
-                            <thead>
-                              <tr className="border-b border-gray-700">
-                                <th className="py-3 px-2 text-gray-300">{t('teamNews.item2.serviceItem')}</th>
-                                <th className="py-3 px-2 text-gray-300">{t('teamNews.item1.serviceContent')}</th>
-                                <th className="py-3 px-2 text-gray-300">AED</th>
-                                <th className="py-3 px-2 text-gray-300">RMB</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr className="border-b border-gray-800">
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item2.personalWebsite')}</td>
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item2.personalWebsiteContent')}</td>
-                                <td className="py-3 px-2 text-gray-400">2800</td>
-                                <td className="py-3 px-2 text-gray-400">5600</td>
-                              </tr>
-                              <tr className="border-b border-gray-800">
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item2.uiDesign')}</td>
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item2.uiDesignContent')}</td>
-                                <td className="py-3 px-2 text-gray-400">150</td>
-                                <td className="py-3 px-2 text-gray-400">300</td>
-                              </tr>
-                              <tr>
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item2.mobileLanding')}</td>
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item2.mobileLandingContent')}</td>
-                                <td className="py-3 px-2 text-gray-400">1400</td>
-                                <td className="py-3 px-2 text-gray-400">2800</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                  
-                  {activeNewsIndex === 2 && (
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item3.toolFeatures')}</h4>
-                        <ul className="space-y-2">
-                          <li className="flex items-start text-gray-400">
-                            <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>{t('teamNews.item3.feature1')}</span>
-                          </li>
-                          <li className="flex items-start text-gray-400">
-                            <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>{t('teamNews.item3.feature2')}</span>
-                          </li>
-                          <li className="flex items-start text-gray-400">
-                            <Check className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                            <span>{t('teamNews.item3.feature3')}</span>
-                          </li>
-                        </ul>
-                      </div>
-                      <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item3.applicationScenarios')}</h4>
-                        <p className="text-gray-400">{t('teamNews.item3.scenariosDesc')}</p>
-                      </div>
-                       
-                      <div>
-                        <h4 className="text-md font-semibold text-purple-300 mb-2">{t('teamNews.item3.wechatServicePrice')}</h4>
-                        <div className="overflow-x-auto">
-                          <table className="w-full text-left border-collapse">
-                            <thead>
-                              <tr className="border-b border-gray-700">
-                                <th className="py-3 px-2 text-gray-300">{t('teamNews.item2.serviceItem')}</th>
-                                <th className="py-3 px-2 text-gray-300">{t('teamNews.item1.serviceContent')}</th>
-                                <th className="py-3 px-2 text-gray-300">AED</th>
-                                <th className="py-3 px-2 text-gray-300">RMB</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr className="border-b border-gray-800">
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item3.wechatOperation')}</td>
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item3.wechatOperationContent')}</td>
-                                <td className="py-3 px-2 text-gray-400">800</td>
-                                <td className="py-3 px-2 text-gray-400">1600</td>
-                              </tr>
-                              <tr className="border-b border-gray-800">
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item3.wechatDesign')}</td>
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item3.wechatDesignContent')}</td>
-                                <td className="py-3 px-2 text-gray-400">150</td>
-                                <td className="py-3 px-2 text-gray-400">300</td>
-                              </tr>
-                              <tr>
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item3.wechatMaterials')}</td>
-                                <td className="py-3 px-2 text-gray-400">{t('teamNews.item3.wechatMaterialsContent')}</td>
-                                <td className="py-3 px-2 text-gray-400">150</td>
-                                <td className="py-3 px-2 text-gray-400">300</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <div className="flex justify-center">
-                  <Button onClick={closeNewsDialog} className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md w-full max-w-xs">
-                    {t('common.close')}
-                  </Button>
-                </div>
-              </div>
-            )}
-          </DialogContent>
-        </Dialog>
-      )}
+      {/* Business News Detail Dialog removed and moved to /pricing page */}
         </div>
       </nav>
 
@@ -966,370 +687,18 @@ export default function ModernWebsite() {
         </DialogContent>
       </Dialog>
 
-      {/* Case Study Detail Dialogs */}
-      {activeCaseIndex !== null && (
-        <Dialog open={true} onOpenChange={closeCaseDialog}>
-          <DialogContent className="bg-gray-900/80 backdrop-blur-md border border-purple-500/30 text-white p-8 rounded-lg text-center max-w-2xl max-h-[90vh] overflow-hidden flex flex-col justify-between" style={{ minHeight: '60vh' }}>
-            {
-              [
-                {
-                  company: "《奔跑吧》全球霸屏",
-                  industry: "综艺IP出海",
-                  challenge: "作为现象级国产综艺，需突破文化差异壁垒，在海外市场建立持续影响力，同时实现商业价值转化，避免 '叫好不叫座'。",
-                  solution: "多语种本地化布局：采用12种语言翻译配音，适配东南亚、北美等核心市场文化语境；账号矩阵联动：全网搭建多元社媒账号，覆盖YouTube、Facebook等平台，形成 '主账号+垂类账号' 协同传播模式；定制化运营策略：结合节日、地域特色设计粉丝福利活动，强化用户粘性；数据驱动优化：通过i-TuBi工具筛选高潜力内容，重点推广互动率高的片段。",
-                  results: ["海外总曝光量达数百亿", "单集最高播放2400万+", "累积影响粉丝近千万", "品牌赞助收入增长30%+"],
-                },
-                {
-                  company: "爱奇艺全球化社媒矩阵搭建",
-                  industry: "视频平台出海",
-                  challenge: "作为视频平台，需在海外市场突破Netflix等竞品垄断，触达多元用户群体，同时提升品牌认知度与APP下载转化。",
-                  solution: "垂直赛道细分：针对剧集、综艺、动漫等内容类型搭建49个YouTube专属频道，精准覆盖不同受众；本地化内容运营：组建18+语种团队，制作 '高光cut' '幕后花絮' 等短内容；跨平台联动：联动Facebook、TikTok发起话题挑战，引导UGC二次创作；数据工具赋能：通过V-Pulse平台监测用户偏好，定向投放APP下载广告。",
-                  results: ["主账号订阅量达590万+", "总曝光10亿+", "最高单视频播放7000万+", "APP海外下载量增长150%"],
-                },
-                {
-                  company: "GAC MOTOR全球品牌破圈",
-                  industry: "汽车品牌出海",
-                  challenge: "作为中国汽车品牌，需在中东、东南亚等市场打破 '欧美品牌垄断' 认知，提升本地化用户辨识度与购买意愿。",
-                  solution: "事件营销借势：绑定世界杯热点，策划 'GAC MOTOR世界杯观赛之旅' 线上活动；本地化社媒运营：开通中东语种社媒账号，发布符合当地文化的内容；线上线下整合：在迪拜、曼谷等核心城市投放户外大屏广告；数据线索沉淀：通过BI工具分析用户互动数据，定向推送试驾预约信息。",
-                  results: ["中东消费者品牌辨识度上升51%", "社媒粉丝突破120万+", "年曝光7200万+", "海外销量同比增长40%"],
-                },
-                {
-                  company: "《天官赐福》国漫商业化出海",
-                  industry: "国漫IP出海",
-                  challenge: "作为国产动画IP，需在海外市场实现 '内容传播+商业变现' 双重目标，打破 '小众圈层' 局限，提升IP长尾价值。",
-                  solution: "内容精准分发：通过iVideoForce平台向Netflix、YouTube等渠道分发多语种版本；社媒电商联动：绑定YouTube Shopping功能，在视频中植入周边购买链接；文化元素深挖：提炼IP中的中国传统美学元素，联合海外潮牌推出联名衍生品；用户私域运营：搭建Discord粉丝社区，定期发布角色设定、创作教程。",
-                  results: ["海外总播放量破亿", "11个国家Netflix榜单进入TOP10", "衍生品电商访问量上涨226%", "客单价提升41%"],
-                },
-              ][activeCaseIndex] && (
-                <div className="space-y-6">
-                  <h3 className="text-2xl font-bold text-purple-300">{t(`cases.case${activeCaseIndex + 1}.company`)}</h3>
-                  <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">{t(`cases.case${activeCaseIndex + 1}.industry`)}</Badge>
-                  
-                  <div className="space-y-6 text-left max-w-md mx-auto overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-purple-500/30 scrollbar-track-gray-800">
-                    <div>
-                      <h4 className="text-lg font-semibold text-red-400 mb-2">{t('cases.challengeLabel')}</h4>
-                      <p className="text-gray-300 leading-relaxed">{t(`cases.case${activeCaseIndex + 1}.challenge`)}</p>
-                    </div>
-
-                    <div>
-                      <h4 className="text-lg font-semibold text-blue-400 mb-2">{t('cases.solutionLabel')}</h4>
-                      <p className="text-gray-300 leading-relaxed">{t(`cases.case${activeCaseIndex + 1}.solution`)}</p>
-                    </div>
-
-                    <div>
-                      <h4 className="text-lg font-semibold text-green-400 mb-2">{t('cases.resultsLabel')}</h4>
-                      <div className="grid grid-cols-1 gap-2">
-                        {t(`cases.case${activeCaseIndex + 1}.results`).map((result, resultIndex) => (
-                          <div key={resultIndex} className="flex items-center text-gray-300">
-                            <TrendingUp className="h-5 w-5 text-green-400 mr-2" />
-                            {result}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex justify-center mt-12 pb-8">
-                    <Button onClick={closeCaseDialog} className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-md w-full max-w-xs">
-                      {t('cases.close')}
-                    </Button>
-                  </div>
-                </div>
-              )
-            }
-          </DialogContent>
-        </Dialog>
-      )}
 
 
 
-      {/* Case Studies Section */}
-      <section id="cases" className="py-24 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">{t('cases.badge')}</Badge>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              {t('cases.title')}
-            </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              {t('cases.description')}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                company: t('cases.case1.company'),
-                industry: t('cases.case1.industry'),
-                challenge: t('cases.case1.challenge'),
-                solution: t('cases.case1.solution'),
-                results: t('cases.case1.results'),
-                image: "/Image/AL/微信图片_20250819133504.png",
-                logo: "/placeholder.svg?height=60&width=120",
-              },
-              {
-                company: t('cases.case2.company'),
-                industry: t('cases.case2.industry'),
-                challenge: t('cases.case2.challenge'),
-                solution: t('cases.case2.solution'),
-                results: t('cases.case2.results'),
-                image: "/Image/AL/微信图片_20250819133512.png",
-                logo: "/placeholder.svg?height=60&width=120",
-              },
-              {
-                company: t('cases.case3.company'),
-                industry: t('cases.case3.industry'),
-                challenge: t('cases.case3.challenge'),
-                solution: t('cases.case3.solution'),
-                results: t('cases.case3.results'),
-                image: "/Image/AL/微信图片_20250819133515.png",
-                logo: "/placeholder.svg?height=60&width=120",
-              },
-              {
-                company: t('cases.case4.company'),
-                industry: t('cases.case4.industry'),
-                challenge: t('cases.case4.challenge'),
-                solution: t('cases.case4.solution'),
-                results: t('cases.case4.results'),
-                image: "/Image/AL/微信图片_20250819133518.png",
-                logo: "/placeholder.svg?height=60&width=120",
-              },
-            ].map((caseStudy, index) => (
-              <FadeInOnScroll
-                key={index}
-                delay={index * 200}
-                className="h-full"
-              >
-                <Card
-                  className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:shadow-xl hover:shadow-purple-500/25 overflow-hidden h-full"
-                >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={caseStudy.image || "/placeholder.svg"}
-                    alt={caseStudy.company}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  
-                  <div className="absolute bottom-4 left-4">
-                    <img
-                      src={caseStudy.logo || "/placeholder.svg"}
-                      alt={`${caseStudy.company} logo`}
-                      className="h-8 opacity-80"
-                    />
-                  </div>
-                </div>
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
-                      {caseStudy.company}
-                    </h3>
-                    <Badge variant="outline" className="border-purple-500/50 text-purple-300">
-                      {caseStudy.industry}
-                    </Badge>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="text-sm font-semibold text-red-400 mb-2">{t('cases.challengeLabel')}</h4>
-                      <p className="text-gray-400 text-sm">{caseStudy.challenge}</p>
-                    </div>
-
-                    <div>
-                      <h4 className="text-sm font-semibold text-blue-400 mb-2">{t('cases.solutionLabel')}</h4>
-                      <p className="text-gray-400 text-sm">{caseStudy.solution}</p>
-                    </div>
-
-                    <div>
-                      <h4 className="text-sm font-semibold text-green-400 mb-2">{t('cases.resultsLabel')}</h4>
-                      <div className="grid grid-cols-2 gap-2">
-                        {caseStudy.results.map((result, resultIndex) => (
-                          <div key={resultIndex} className="flex items-center text-xs text-gray-300">
-                            <TrendingUp className="h-3 w-3 text-green-400 mr-1" />
-                            {result}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <Button 
-              className="w-full mt-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
-              onClick={() => openCaseDialog(index)}
-            >
-              {t('cases.viewDetails')}
-            </Button>
-                </CardContent>
-              </Card>
-              </FadeInOnScroll>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* News Section */}
-      <section id="news" className="py-24 relative">
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-20">
-            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 mb-6">{t('news.newsLabel')}</Badge>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              {t('news.latestNews')}
-            </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">{t('news.description')}</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            { [
-              { image: "/Image/XW1/微信图片_20250819102012.jpg" },
-              { image: "/Image/XW2/微信图片_20250819101830.jpg" },
-              { image: "/Image/XW3/微信图片_20250819103236.png" },
-              { image: "/Image/XW4/微信图片_20250819104152.png" },
-              { image: "/Image/XW5/微信图片_20250819111920.jpg" },
-              { image: "/Image/XW6/微信图片_2025-09-09_154838_287.jpg" },
-            ].map((imageObj, index) => {
-              // 创建包含多语言内容的文章对象
-              const article = {
-                category: t(`news.articles.${index}.category`),
-                title: t(`news.articles.${index}.title`),
-                excerpt: t(`news.articles.${index}.excerpt`),
-                date: t(`news.articles.${index}.date`),
-                readTime: t(`news.articles.${index}.readTime`),
-                image: imageObj.image,
-                tags: t(`news.articles.${index}.tags`) || []
-              };
-              return article;
-            }).map((article: any, index: number) => (
-              <FadeInOnScroll
-                key={index}
-                delay={(index % 3) * 150 + Math.floor(index / 3) * 100}
-                className="h-full"
-              >
-                <Card
-                  className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-500 group hover:scale-105 overflow-hidden h-full"
-                >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={article.image || "/placeholder.svg"}
-                    alt={article.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <Badge className="bg-purple-600/80 text-white">{article.category}</Badge>
-                  </div>
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-bold text-white mb-3 group-hover:text-purple-300 transition-colors line-clamp-2">
-                    {article.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm mb-4 line-clamp-3 leading-relaxed">{article.excerpt}</p>
-
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {article.tags.map((tag, tagIndex) => (
-                      <Badge key={tagIndex} variant="outline" className="text-xs border-gray-600 text-gray-400">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-                    <span>{article.date}</span>
-                    <span>{article.readTime}</span>
-                  </div>
-
-                  <Link href={`/news/${index + 1}`} passHref>
-                    <Button
-                      variant="outline"
-                      className="w-full border-purple-500/50 text-purple-300 hover:bg-purple-500/10 bg-transparent"
-                    >
-                      {t('btn.readMore')}
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-              </FadeInOnScroll>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link href="/news" passHref>
-                <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 px-8 py-3">
-                  {t('btn.viewMore')}
-                </Button>
-              </Link>
-          </div>
-        </div>
-      </section>
 
 
 
-      {/* Team News Section */}
-      <section id="team-news" className="py-24 relative">
-        {/* Team News Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
-          style={{
-            backgroundImage: "url('/team-background.svg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          
-        </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-20 mt-[-30px]">
-            <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30 mb-6">{t('teamNews.badge')}</Badge>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              {t('teamNews.title')}
-            </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">{t('teamNews.description')}</p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {teamNews.map((news, index) => (
-              <FadeInOnScroll
-                key={index}
-                delay={(index % 3) * 150 + Math.floor(index / 3) * 100}
-                className="h-full"
-              >
-                <Card
-                  className="bg-gray-900/50 border-gray-800 transition-all duration-300 hover:scale-105 hover:border-blue-500/30 flex flex-col h-full"
-                >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={news.imageUrl}
-                    alt={news.title}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <Badge className={`${news.type === 'project' ? 'bg-green-500/20 text-green-300 border-green-500/30' : news.type === 'announcement' ? 'bg-blue-500/20 text-blue-300 border-blue-500/30' : 'bg-purple-500/20 text-purple-300 border-purple-500/30'}`}>
-                      {news.category}
-                    </Badge>
-                  </div>
-                </div>
 
-                <CardContent className="p-6">
-                  <p className="text-gray-500 text-sm mb-3">{news.date}</p>
-                  <CardTitle className="text-xl font-bold text-white mb-2 hover:text-blue-400 transition-colors cursor-pointer">{news.title}</CardTitle>
-                  <p className="text-gray-400 mb-4 line-clamp-3">{news.summary}</p>
-                  <div className="mt-auto">
-                    <div className="w-full h-[40px] border border-blue-500/30 rounded-md flex items-center justify-center">
-                      <Button
-                        variant="link"
-                        className="text-blue-400 hover:text-blue-300 p-0 w-full text-center"
-                        onClick={() => openNewsDialog(index)}
-                      >
-                        {t('btn.readMore')}
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              </FadeInOnScroll>
-            ))}
-          </div>
-        </div>
-      </section>
+
+
+      {/* Team News Section removed and moved to /pricing page */}
 
       {/* Contact Section */}
       <section id="contact" className="py-24 relative">
