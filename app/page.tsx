@@ -39,6 +39,8 @@ import {
   Code,
   Search,
   UserPlus,
+  User as UserIcon,
+  Palette,
 } from "lucide-react"
 
 export default function ModernWebsite() {
@@ -300,6 +302,9 @@ export default function ModernWebsite() {
               <Link href="/cases" className="text-gray-300 hover:text-purple-400 transition-colors">
                 {t('nav.projects')}
               </Link>
+              <Link href="/team" className="text-gray-300 hover:text-purple-400 transition-colors">
+                {t('nav.team')}
+              </Link>
               <Link href="/news" className="text-gray-300 hover:text-purple-400 transition-colors">
                 {t('nav.news')}
               </Link>
@@ -343,9 +348,12 @@ export default function ModernWebsite() {
               <Link href="/cases" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
                 {t('nav.projects')}
               </Link>
+              <Link href="/team" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
+                {t('nav.team')}
+              </Link>
               <Link href="/news" className="block px-3 py-2 text-gray-300 hover:text-purple-400">
-                  资讯
-                </Link>
+                {t('nav.news')}
+              </Link>
                 
                 {/* 移动端语言切换按钮 */}
                 <Button 
@@ -699,6 +707,8 @@ export default function ModernWebsite() {
 
 
       {/* Team News Section removed and moved to /pricing page */}
+
+
 
       {/* Contact Section */}
       <section id="contact" className="py-24 relative">

@@ -48,45 +48,45 @@ export default function CasesPage() {
         </div>
         
         {/* Case Studies Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {[
-            {
-              company: t('cases.case1.company'),
-              industry: t('cases.case1.industry'),
-              challenge: t('cases.case1.challenge'),
-              solution: t('cases.case1.solution'),
-              results: t('cases.case1.results'),
-              image: "/Image/AL/微信图片_20250819133504.png",
-              logo: "/placeholder.svg?height=60&width=120",
-            },
-            {
-              company: t('cases.case2.company'),
-              industry: t('cases.case2.industry'),
-              challenge: t('cases.case2.challenge'),
-              solution: t('cases.case2.solution'),
-              results: t('cases.case2.results'),
-              image: "/Image/AL/微信图片_20250819133512.png",
-              logo: "/placeholder.svg?height=60&width=120",
-            },
-            {
-              company: t('cases.case3.company'),
-              industry: t('cases.case3.industry'),
-              challenge: t('cases.case3.challenge'),
-              solution: t('cases.case3.solution'),
-              results: t('cases.case3.results'),
-              image: "/Image/AL/微信图片_20250819133515.png",
-              logo: "/placeholder.svg?height=60&width=120",
-            },
-            {
-              company: t('cases.case4.company'),
-              industry: t('cases.case4.industry'),
-              challenge: t('cases.case4.challenge'),
-              solution: t('cases.case4.solution'),
-              results: t('cases.case4.results'),
-              image: "/Image/AL/微信图片_20250819133518.png",
-              logo: "/placeholder.svg?height=60&width=120",
-            },
-          ].map((caseStudy, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              {
+                company: t('cases.case1.company'),
+                industry: t('cases.case1.industry'),
+                challenge: t('cases.case1.challenge'),
+                solution: t('cases.case1.solution'),
+                results: t('cases.case1.results'),
+                image: "/placeholder.jpg",
+                logo: "/placeholder.svg?height=60&width=120",
+              },
+              {
+                company: t('cases.case2.company'),
+                industry: t('cases.case2.industry'),
+                challenge: t('cases.case2.challenge'),
+                solution: t('cases.case2.solution'),
+                results: t('cases.case2.results'),
+                image: "/placeholder.jpg",
+                logo: "/placeholder.svg?height=60&width=120",
+              },
+              {
+                company: t('cases.case3.company'),
+                industry: t('cases.case3.industry'),
+                challenge: t('cases.case3.challenge'),
+                solution: t('cases.case3.solution'),
+                results: t('cases.case3.results'),
+                image: "/placeholder.jpg",
+                logo: "/placeholder.svg?height=60&width=120",
+              },
+              {
+                company: t('cases.case4.company'),
+                industry: t('cases.case4.industry'),
+                challenge: t('cases.case4.challenge'),
+                solution: t('cases.case4.solution'),
+                results: t('cases.case4.results'),
+                image: "/placeholder.jpg",
+                logo: "/placeholder.svg?height=60&width=120",
+              },
+            ].map((caseStudy, index) => (
             <FadeInOnScroll
               key={index}
               delay={index * 200}
@@ -100,6 +100,10 @@ export default function CasesPage() {
                     src={caseStudy.image || "/placeholder.svg"}
                     alt={caseStudy.company}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = "/placeholder.svg";
+                    }}
                   />
                   
                   <div className="absolute bottom-4 left-4">
@@ -134,7 +138,7 @@ export default function CasesPage() {
                     <div>
                       <h4 className="text-sm font-semibold text-green-400 mb-2">{t('cases.resultsLabel')}</h4>
                       <div className="grid grid-cols-2 gap-2">
-                        {caseStudy.results.map((result: string, resultIndex: number) => (
+                        {(caseStudy.results && caseStudy.results[language] || []).map((result: string, resultIndex: number) => (
                           <div key={resultIndex} className="flex items-center text-xs text-gray-300">
                             <TrendingUp className="h-3 w-3 text-green-400 mr-1" />
                             {result}
@@ -179,7 +183,7 @@ export default function CasesPage() {
                 <div>
                   <h4 className="text-lg font-semibold text-green-400 mb-2">{t('cases.resultsLabel')}</h4>
                   <div className="grid grid-cols-1 gap-2">
-                    {t(`cases.case${activeCaseIndex + 1}.results`).map((result: string, resultIndex: number) => (
+                    {(t(`cases.case${activeCaseIndex + 1}.results`) && t(`cases.case${activeCaseIndex + 1}.results`)[language] || []).map((result: string, resultIndex: number) => (
                       <div key={resultIndex} className="flex items-center text-gray-300">
                         <TrendingUp className="h-5 w-5 text-green-400 mr-2" />
                         {result}
@@ -188,12 +192,12 @@ export default function CasesPage() {
                   </div>
                 </div>
               </div>
-              
-              <div className="flex justify-center mt-12 pb-8">
-                <Button onClick={closeCaseDialog} className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-md w-full max-w-xs">
-                  {t('cases.close')}
-                </Button>
-              </div>
+            </div>
+            
+            <div className="flex justify-center mt-6 pb-8">
+              <Button onClick={closeCaseDialog} className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-md w-full max-w-xs">
+                {t('cases.close')}
+              </Button>
             </div>
           </DialogContent>
         </Dialog>

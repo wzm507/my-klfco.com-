@@ -21,6 +21,7 @@ const translations: Translations = {
     about: { zh: '关于我们', en: 'About Us' },
     services: { zh: '服务', en: 'Services' },
     projects: { zh: '案例', en: 'Cases' },
+    team: { zh: '专业团队', en: 'Our Team' },
     news: { zh: '公司动态', en: 'News' },
     contact: { zh: '联系我们', en: 'Contact' },
     pricing: { zh: '价格', en: 'Pricing' },
@@ -391,12 +392,49 @@ const translations: Translations = {
         }
     },
     
-    // 联系我们
-    contact: {
-      title: { zh: '开启您的中东房产数字化增长', en: 'Start Your Middle East Real Estate Digital Growth' },
-      badge: { zh: '联系我们', en: 'Contact Us' },
-      description: { zh: '立即咨询，定制IP孵化、网站搭建等专属方案', en: 'Consult now to customize exclusive solutions for IP incubation, website development, etc.' }
+    // 服务团队
+  team: {
+    badge: { zh: '核心团队', en: 'Core Team' },
+    title: { zh: '专业服务团队', en: 'Professional Service Team' },
+    description: { zh: '我们拥有一支经验丰富的专业团队，为您提供全方位的中东房产数字化解决方案', en: 'We have an experienced professional team providing you with comprehensive Middle East real estate digital solutions' },
+    // 团队卡片1
+    member1: {
+      name: { zh: '张经理', en: 'Manager Zhang' },
+      position: { zh: '中东市场总监', en: 'Middle East Market Director' },
+      description: { zh: '拥有10年中东房产市场经验，熟悉当地政策法规和投资环境', en: '10 years of experience in Middle East real estate market, familiar with local policies and investment environment' }
     },
+    // 团队卡片2
+    member2: {
+      name: { zh: '李工', en: 'Engineer Li' },
+      position: { zh: '技术总监', en: 'Technical Director' },
+      description: { zh: '15年Web开发经验，专精于房地产平台架构设计和性能优化', en: '15 years of Web development experience, specializing in real estate platform architecture and performance optimization' }
+    },
+    // 团队卡片3
+    member3: {
+      name: { zh: 'Robin', en: 'Robin' },
+      position: { zh: '数字化转型顾问', en: 'Digital Transformation Consultant' },
+      description: { zh: '专注于房地产数字化转型策略，已帮助50+企业实现业务增长', en: 'Focused on real estate digital transformation strategy, helped 50+ enterprises achieve business growth' }
+    },
+    // 团队卡片4
+    member4: {
+      name: { zh: '陈设计师', en: 'Designer Chen' },
+      position: { zh: 'UI/UX设计总监', en: 'UI/UX Design Director' },
+      description: { zh: '8年房地产网站设计经验，擅长用户体验优化和品牌视觉设计', en: '8 years of real estate website design experience, good at user experience optimization and brand visual design' }
+    },
+    // 团队卡片5
+    member5: {
+      name: { zh: '赵专员', en: 'Specialist Zhao' },
+      position: { zh: '本地化运营专家', en: 'Localization Operation Expert' },
+      description: { zh: '精通中东风土文化，提供精准的内容本地化和市场推广方案', en: 'Proficient in Middle East culture, providing precise content localization and marketing solutions' }
+    }
+  },
+
+  // 联系我们
+  contact: {
+    title: { zh: '开启您的中东房产数字化增长', en: 'Start Your Middle East Real Estate Digital Growth' },
+    badge: { zh: '联系我们', en: 'Contact Us' },
+    description: { zh: '立即咨询，定制IP孵化、网站搭建等专属方案', en: 'Consult now to customize exclusive solutions for IP incubation, website development, etc.' }
+  },
     
     // 联系表单
     contactForm: {
@@ -651,9 +689,67 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({ childr
     return defaultValue || key;
   };
 
-  // 切换语言函数
+  // 切换语言函数（带优化的扫描动画）
   const toggleLanguage = () => {
-    setLanguage(language === 'zh' ? 'en' : 'zh');
+    // 创建扫描线容器
+    const scanContainer = document.createElement('div');
+    scanContainer.className = 'fixed top-0 left-0 w-full h-screen pointer-events-none z-50 overflow-hidden';
+    
+    // 创建扫描线元素
+    const scanLine = document.createElement('div');
+    scanLine.className = 'absolute left-0 w-full h-[15vh]';
+    scanLine.style.background = 'linear-gradient(to bottom, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.3), rgba(168, 85, 247, 0.1))';
+    scanLine.style.boxShadow = '0 0 30px rgba(168, 85, 247, 0.4)';
+    scanLine.style.opacity = '0';
+    scanLine.style.transform = 'translateY(-100%)';
+    
+    // 添加到容器
+    scanContainer.appendChild(scanLine);
+    
+    // 添加扫描动画样式
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes optimizedScanAnimation {
+        0% { 
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        10% { 
+          opacity: 1;
+        }
+        90% { 
+          opacity: 1;
+        }
+        100% { 
+          transform: translateY(100vh);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    document.body.appendChild(scanContainer);
+    
+    // 启动动画
+    requestAnimationFrame(() => {
+      scanLine.style.animation = 'optimizedScanAnimation 1.2s ease-in-out forwards';
+    });
+    
+    // 动画进行到70%时切换语言
+    setTimeout(() => {
+      setLanguage(language === 'zh' ? 'en' : 'zh');
+      
+      // 添加语言切换时的微动画
+      document.documentElement.classList.add('language-transition');
+      setTimeout(() => {
+        document.documentElement.classList.remove('language-transition');
+      }, 300);
+    }, 840);
+    
+    // 清理扫描线元素
+    setTimeout(() => {
+      document.body.removeChild(scanContainer);
+      document.head.removeChild(style);
+    }, 1500);
   };
 
   const contextValue: TranslationContextType = {
