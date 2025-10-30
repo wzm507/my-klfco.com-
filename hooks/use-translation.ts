@@ -399,13 +399,13 @@ const translations: Translations = {
     description: { zh: '我们拥有一支经验丰富的专业团队，为您提供全方位的中东房产数字化解决方案', en: 'We have an experienced professional team providing you with comprehensive Middle East real estate digital solutions' },
     // 团队卡片1
     member1: {
-      name: { zh: '张经理', en: 'Manager Zhang' },
+      name: { zh: 'Shirley', en: 'Shirley' },
       position: { zh: '中东市场总监', en: 'Middle East Market Director' },
       description: { zh: '拥有10年中东房产市场经验，熟悉当地政策法规和投资环境', en: '10 years of experience in Middle East real estate market, familiar with local policies and investment environment' }
     },
     // 团队卡片2
     member2: {
-      name: { zh: '李工', en: 'Engineer Li' },
+      name: { zh: 'Joyi', en: 'Joyi' },
       position: { zh: '技术总监', en: 'Technical Director' },
       description: { zh: '15年Web开发经验，专精于房地产平台架构设计和性能优化', en: '15 years of Web development experience, specializing in real estate platform architecture and performance optimization' }
     },
@@ -417,13 +417,13 @@ const translations: Translations = {
     },
     // 团队卡片4
     member4: {
-      name: { zh: '陈设计师', en: 'Designer Chen' },
+        name: { zh: 'Mary', en: 'Mary' },
       position: { zh: 'UI/UX设计总监', en: 'UI/UX Design Director' },
       description: { zh: '8年房地产网站设计经验，擅长用户体验优化和品牌视觉设计', en: '8 years of real estate website design experience, good at user experience optimization and brand visual design' }
     },
     // 团队卡片5
     member5: {
-      name: { zh: '赵专员', en: 'Specialist Zhao' },
+      name: { zh: 'Kuku', en: 'Kuku' },
       position: { zh: '本地化运营专家', en: 'Localization Operation Expert' },
       description: { zh: '精通中东风土文化，提供精准的内容本地化和市场推广方案', en: 'Proficient in Middle East culture, providing precise content localization and marketing solutions' }
     }
