@@ -691,65 +691,124 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({ childr
 
   // 切换语言函数（带优化的扫描动画）
   const toggleLanguage = () => {
-    // 创建扫描线容器
-    const scanContainer = document.createElement('div');
-    scanContainer.className = 'fixed top-0 left-0 w-full h-screen pointer-events-none z-50 overflow-hidden';
-    
-    // 创建扫描线元素
-    const scanLine = document.createElement('div');
-    scanLine.className = 'absolute left-0 w-full h-[15vh]';
-    scanLine.style.background = 'linear-gradient(to bottom, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.3), rgba(168, 85, 247, 0.1))';
-    scanLine.style.boxShadow = '0 0 30px rgba(168, 85, 247, 0.4)';
-    scanLine.style.opacity = '0';
-    scanLine.style.transform = 'translateY(-100%)';
-    
-    // 添加到容器
-    scanContainer.appendChild(scanLine);
-    
-    // 添加扫描动画样式
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes optimizedScanAnimation {
-        0% { 
-          transform: translateY(-100%);
-          opacity: 0;
-        }
-        10% { 
-          opacity: 1;
-        }
-        90% { 
-          opacity: 1;
-        }
-        100% { 
-          transform: translateY(100vh);
-          opacity: 0;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-    document.body.appendChild(scanContainer);
-    
-    // 启动动画
-    requestAnimationFrame(() => {
-      scanLine.style.animation = 'optimizedScanAnimation 1.2s ease-in-out forwards';
-    });
-    
-    // 动画进行到70%时切换语言
-    setTimeout(() => {
+    // 确保在浏览器环境中执行
+    if (typeof document === 'undefined' || typeof window === 'undefined') {
       setLanguage(language === 'zh' ? 'en' : 'zh');
-      
-      // 添加语言切换时的微动画
-      document.documentElement.classList.add('language-transition');
-      setTimeout(() => {
-        document.documentElement.classList.remove('language-transition');
-      }, 300);
-    }, 840);
+      return;
+    }
     
-    // 清理扫描线元素
-    setTimeout(() => {
-      document.body.removeChild(scanContainer);
-      document.head.removeChild(style);
-    }, 1500);
+    try {
+      // 创建扫描线容器
+      const scanContainer = document.createElement('div');
+      Object.assign(scanContainer.style, {
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100vh',
+        pointerEvents: 'none',
+        zIndex: '50',
+        overflow: 'hidden'
+      });
+      
+      // 创建扫描线元素
+      const scanLine = document.createElement('div');
+      Object.assign(scanLine.style, {
+        position: 'absolute',
+        left: '0',
+        width: '100%',
+        height: '15vh',
+        background: 'linear-gradient(to bottom, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.3), rgba(168, 85, 247, 0.1))',
+        boxShadow: '0 0 30px rgba(168, 85, 247, 0.4)',
+        opacity: '0',
+        transform: 'translateY(-100%)',
+        transition: 'none' // 先禁用过渡效果
+      });
+      
+      // 添加到容器
+      scanContainer.appendChild(scanLine);
+      document.body.appendChild(scanContainer);
+      
+      // 使用纯JavaScript实现动画，避免依赖CSS动画
+      const duration = 1200; // 1.2秒
+      const startTime = Date.now();
+      const screenHeight = window.innerHeight;
+      
+      // 脉冲效果状态
+      let pulseOpacity = 0.7;
+      let increasing = true;
+      
+      // 动画函数
+      const animate = () => {
+        const currentTime = Date.now();
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // 扫描线位置动画（使用缓动函数）
+        const easeOutQuad = 1 - (1 - progress) * (1 - progress);
+        const newY = -100 + (100 + screenHeight / scanLine.clientHeight * 100) * easeOutQuad;
+        scanLine.style.transform = `translateY(${newY}%)`;
+        
+        // 透明度动画
+        if (progress < 0.1) {
+          scanLine.style.opacity = (progress / 0.1).toString();
+        } else if (progress > 0.9) {
+          scanLine.style.opacity = ((1 - progress) / 0.1).toString();
+        } else {
+          // 脉冲效果
+          pulseOpacity += increasing ? 0.02 : -0.02;
+          if (pulseOpacity >= 0.9) increasing = false;
+          else if (pulseOpacity <= 0.7) increasing = true;
+          scanLine.style.opacity = pulseOpacity.toString();
+        }
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+      
+      // 启动动画
+      requestAnimationFrame(() => {
+        requestAnimationFrame(animate);
+      });
+      
+      // 动画进行到70%时切换语言
+      setTimeout(() => {
+        setLanguage(language === 'zh' ? 'en' : 'zh');
+        
+        // 添加语言切换时的微动画
+        try {
+          const body = document.body;
+          const originalOpacity = body.style.opacity || '1';
+          body.style.transition = 'opacity 0.2s ease-in-out';
+          body.style.opacity = '0.9';
+          setTimeout(() => {
+            body.style.opacity = originalOpacity;
+            // 清理transition样式，避免影响其他动画
+            setTimeout(() => {
+              body.style.transition = '';
+            }, 200);
+          }, 100);
+        } catch (e) {
+          console.warn('语言切换微动画执行失败:', e);
+        }
+      }, 840);
+      
+      // 清理扫描线元素
+      setTimeout(() => {
+        try {
+          if (scanContainer.parentNode) {
+            scanContainer.parentNode.removeChild(scanContainer);
+          }
+        } catch (e) {
+          console.warn('扫描线清理失败:', e);
+        }
+      }, 1500);
+    } catch (error) {
+      console.error('扫描动画执行失败:', error);
+      // 失败时直接切换语言，确保功能正常
+      setLanguage(language === 'zh' ? 'en' : 'zh');
+    }
   };
 
   const contextValue: TranslationContextType = {
