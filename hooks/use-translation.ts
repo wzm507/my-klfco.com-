@@ -691,8 +691,11 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({ childr
 
   // 切换语言函数（带优化的扫描动画）
   const toggleLanguage = () => {
-    // 确保在浏览器环境中执行
-    if (typeof document === 'undefined' || typeof window === 'undefined') {
+    // 严格检查是否在浏览器环境中，包括requestAnimationFrame检测
+    const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined' && typeof requestAnimationFrame === 'function';
+    
+    if (!isBrowser) {
+      // 非浏览器环境下直接切换语言
       setLanguage(language === 'zh' ? 'en' : 'zh');
       return;
     }
@@ -708,7 +711,8 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({ childr
         height: '100vh',
         pointerEvents: 'none',
         zIndex: '50',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        opacity: '1' // 确保可见
       });
       
       // 创建扫描线元素
@@ -732,7 +736,7 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({ childr
       // 使用纯JavaScript实现动画，避免依赖CSS动画
       const duration = 1200; // 1.2秒
       const startTime = Date.now();
-      const screenHeight = window.innerHeight;
+      const screenHeight = window.innerHeight || 1000; // 添加默认值防止错误
       
       // 脉冲效果状态
       let pulseOpacity = 0.7;
@@ -746,7 +750,9 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({ childr
         
         // 扫描线位置动画（使用缓动函数）
         const easeOutQuad = 1 - (1 - progress) * (1 - progress);
-        const newY = -100 + (100 + screenHeight / scanLine.clientHeight * 100) * easeOutQuad;
+        // 避免使用clientHeight，使用固定值替代以提高兼容性
+        const lineHeight = 150; // 近似15vh的像素值
+        const newY = -100 + (100 + screenHeight / lineHeight * 100) * easeOutQuad;
         scanLine.style.transform = `translateY(${newY}%)`;
         
         // 透明度动画
@@ -767,10 +773,12 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({ childr
         }
       };
       
-      // 启动动画
-      requestAnimationFrame(() => {
-        requestAnimationFrame(animate);
-      });
+      // 优化动画启动逻辑，确保DOM已更新
+      setTimeout(() => {
+        if (typeof requestAnimationFrame === 'function') {
+          requestAnimationFrame(animate);
+        }
+      }, 0);
       
       // 动画进行到70%时切换语言
       setTimeout(() => {
@@ -778,30 +786,53 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({ childr
         
         // 添加语言切换时的微动画
         try {
-          const body = document.body;
-          const originalOpacity = body.style.opacity || '1';
-          body.style.transition = 'opacity 0.2s ease-in-out';
-          body.style.opacity = '0.9';
-          setTimeout(() => {
-            body.style.opacity = originalOpacity;
-            // 清理transition样式，避免影响其他动画
+          if (document.body) {
+            const body = document.body;
+            const originalOpacity = body.style.opacity || '1';
+            body.style.transition = 'opacity 0.2s ease-in-out';
+            body.style.opacity = '0.9';
             setTimeout(() => {
-              body.style.transition = '';
-            }, 200);
-          }, 100);
+              if (document.body) {
+                body.style.opacity = originalOpacity;
+                // 清理transition样式，避免影响其他动画
+                setTimeout(() => {
+                  if (document.body) {
+                    body.style.transition = '';
+                  }
+                }, 200);
+              }
+            }, 100);
+          }
         } catch (e) {
           console.warn('语言切换微动画执行失败:', e);
         }
       }, 840);
       
-      // 清理扫描线元素
+      // 清理扫描线元素，使用淡出动画改进用户体验
       setTimeout(() => {
         try {
-          if (scanContainer.parentNode) {
-            scanContainer.parentNode.removeChild(scanContainer);
+          if (scanContainer && scanContainer.parentNode) {
+            // 添加淡出效果
+            scanContainer.style.transition = 'opacity 0.3s ease-out';
+            scanContainer.style.opacity = '0';
+            
+            // 淡出后移除元素
+            setTimeout(() => {
+              if (scanContainer && scanContainer.parentNode) {
+                scanContainer.parentNode.removeChild(scanContainer);
+              }
+            }, 300);
           }
         } catch (e) {
           console.warn('扫描线清理失败:', e);
+          // 强制移除作为后备方案
+          if (scanContainer && scanContainer.parentNode) {
+            try {
+              scanContainer.parentNode.removeChild(scanContainer);
+            } catch (e2) {
+              console.error('强制清理也失败:', e2);
+            }
+          }
         }
       }, 1500);
     } catch (error) {
